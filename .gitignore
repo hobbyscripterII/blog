@@ -1,0 +1,9 @@
+# 프로젝트 제외 경로
+/target/
+
+.idea
+.classpath
+.project
+.springBeans
+.settings
+*.properties
