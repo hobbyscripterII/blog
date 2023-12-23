@@ -10,6 +10,7 @@
 <jsp:include page="layout/header.jsp"/>
 <jsp:include page="layout/nav.jsp"/>
 <div class="content">
+    <h2>회원가입</h2>
 </div>
 </body>
 </html>

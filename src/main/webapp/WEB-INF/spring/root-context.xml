@@ -26,5 +26,5 @@
 		<property name="mapperLocations" value="classpath:mybatis/*Mapper.xml" />
 	</bean>
 
-	<mybatis-spring:scan base-package="com.my" />
+	<mybatis-spring:scan base-package="com.my.blog" />
 </beans>
