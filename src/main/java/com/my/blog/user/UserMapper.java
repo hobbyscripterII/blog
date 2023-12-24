@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     int signUp(UserSignUpDto dto);
-    UserEntity signIn(UserSignInDto dto);
+    UserEntity signIn(String uid);
 }

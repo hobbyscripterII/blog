@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class UserEntity {
+    private int iuser;
     private String upw;
     private String unm;
 }

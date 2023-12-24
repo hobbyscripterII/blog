@@ -9,6 +9,6 @@
     </insert>
 
     <select id="signIn">
-        SELECT * FROM user WHERE uid = #{uid}
+        SELECT iuser, upw, unm FROM user WHERE uid = #{uid}
     </select>
 </mapper>
