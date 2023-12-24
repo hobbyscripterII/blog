@@ -13,9 +13,10 @@ public class BoardVo {
 
     @Getter
     public static class Sel {
+        private String boardCategoryName;
         private String title;
         private String contents;
-        private String nm;
+        private String writer;
         private String createdAt;
         private String updatedAt;
     }

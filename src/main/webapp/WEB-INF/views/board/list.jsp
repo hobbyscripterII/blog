@@ -36,7 +36,7 @@
             <c:forEach var="l" items="${list}">
                 <tr class="table-active">
                     <th scope="row"><c:out value="${l.boardId}" /></th>
-                    <th scope="row"><a href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}" /></a></th>
+                    <th scope="row"><a class="a-board-title" href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}" /></a></th>
                     <th scope="row"><c:out value="${l.nm}" /></th>
                     <th scope="row"><c:out value="${l.createdAt}" /></th>
                 </tr>

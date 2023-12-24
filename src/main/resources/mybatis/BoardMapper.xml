@@ -16,7 +16,7 @@
     </select>
 
     <select id="setBoard">
-        SELECT a.title, a.contents, c.unm nm, a.created_at createdAt, a.updated_at updatedAt
+        SELECT b.name boardCategoryName, a.title, a.contents, c.unm writer, a.created_at createdAt, a.updated_at updatedAt
         FROM board a
         INNER JOIN board_category b
         ON a.icategory = b.icategory

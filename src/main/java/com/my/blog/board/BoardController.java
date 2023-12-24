@@ -21,7 +21,6 @@ public class BoardController {
 
     @GetMapping("/list")
     public String getBoardList(@RequestParam(name = "category_id", required = false) int categoryId, Model model) {
-        log.info("categoryId = {}", categoryId);
         BoardCategoryDto board = service.getBoardCategory(categoryId);
         List<BoardVo.Get> list = service.getBoard(categoryId);
         model.addAttribute("board", board);

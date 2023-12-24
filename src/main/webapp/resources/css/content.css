@@ -1,10 +1,25 @@
 .content {
     box-sizing: border-box;
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    height: 100%;
     padding-top: 20px;
     align-content: baseline;
+}
+
+.div-board-list-wrap {
+    width: 1000px;
+}
+
+.a-board-title {
+    color: white;
+    text-decoration: none;
+}
+
+.div-carousel-wrap {
+    width: 500px;
+    height: 500px;
+    /*opacity: 0.7;*/
 }
