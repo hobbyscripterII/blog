@@ -12,10 +12,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">diary</a>
+                        <a class="nav-link" href="/board/list?category_id=1">diary</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">study</a>
+                        <a class="nav-link" href="/board/list?category_id=2">study</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">setting</a>
@@ -38,7 +38,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">etc</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">like</a>
+                            <a class="dropdown-item" href="/board?category_id=3">like</a>
                             <div class="dropdown-divider"></div>
                             <%--                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-login">sign in</a>--%>
                             <a class="dropdown-item" href="/sign-up">sign up</a>

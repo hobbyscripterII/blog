@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.blog.board.BoardMapper">
+    <select id="getBoardCategory">
+        SELECT icategory boardId, name FROM board_category WHERE icategory = #{boardId}
+    </select>
+
+    <select id="getBoard">
+        SELECT a.iboard boardId, a.title, c.unm nm, a.created_at createdAt
+        FROM board a
+        INNER JOIN board_category b
+        ON a.icategory = b.icategory
+        INNER JOIN user c
+        ON a.iuser = c.iuser
+        WHERE b.icategory = #{categoryId}
+    </select>
+
+    <select id="setBoard">
+        SELECT a.title, a.contents, c.unm nm, a.created_at createdAt, a.updated_at updatedAt
+        FROM board a
+        INNER JOIN board_category b
+        ON a.icategory = b.icategory
+        INNER JOIN user c
+        ON a.iuser = c.iuser
+        WHERE a.iboard = #{boardId}
+    </select>
+</mapper>
