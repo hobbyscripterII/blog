@@ -7,8 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserSignUpDto {
+public class UserSignInDto {
     private String uid;
     private String upw;
-    private String unm;
 }

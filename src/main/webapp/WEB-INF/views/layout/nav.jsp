@@ -2,16 +2,41 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <nav>
-    <ul>
-        <li><a href="/">홈</a></li>
-        <li><a>일기</a></li>
-        <li><a>공부</a></li>
-        <li><a>관심</a></li>
-        <li><a>기타</a></li>
-        <li><a>설정</a></li>
-        <li><a href="sign-up">회원가입</a></li>
-        <li><a data-bs-toggle="modal" data-bs-target="#modal-login">로그인</a></li>
-    </ul>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">my blog</a>
+            <div class="navbar-collapse collapse" id="navbarColor02" style="">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">diary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">study</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">setting</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">etc</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">like</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-login">sign in</a>
+                            <a class="dropdown-item" href="/sign-up">sign up</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
 </nav>
 
 <div class="modal" id="modal-login">

@@ -7,3 +7,6 @@
 .springBeans
 .settings
 *.properties
+
+src/main/webapp/WEB-INF/lib
+src/main/webapp/WEB-INF/classes
