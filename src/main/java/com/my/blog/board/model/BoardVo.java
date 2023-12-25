@@ -1,6 +1,7 @@
 package com.my.blog.board.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class BoardVo {
     @Getter
@@ -12,6 +13,7 @@ public class BoardVo {
     }
 
     @Getter
+    @Setter
     public static class Sel {
         private String boardCategoryName;
         private String title;

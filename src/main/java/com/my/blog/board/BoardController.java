@@ -2,6 +2,7 @@ package com.my.blog.board;
 
 import com.my.blog.board.model.BoardCategoryDto;
 import com.my.blog.board.model.BoardVo;
+import com.my.blog.common.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,10 @@ public class BoardController {
     @GetMapping("/read")
     public String selBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel board = service.selBoard(boardId);
+        // markdown 렌더링
+//        String contents_ = board.getContents();
+//        String contents = CommonUtil.markdown(contents_);
+//        board.setContents(contents);
         model.addAttribute("board", board);
         return "/board/read";
     }

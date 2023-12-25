@@ -10,8 +10,8 @@
 <jsp:include page="layout/header.jsp"/>
 <jsp:include page="layout/nav.jsp"/>
 <div class="content">
-    <h2>회원가입</h2>
-    <h5>회원가입 기간이 아닙니다.</h5>
+    <h2 style="color: black; text-align: center">회원가입</h2>
+    <h5 style="width: 100%; text-align: center">회원가입 기간이 아닙니다.</h5>
 
 <%--    <div class="div-sign-up-form-wrap">--%>
 <%--        <form id="form-sign-up">--%>
