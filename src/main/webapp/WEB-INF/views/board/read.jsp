@@ -14,15 +14,15 @@
 
     <div class="div-board-list-wrap">
         <table class="table">
-            <tr class="table-active">
+            <tr class="table">
                 <th scope="row">제목</th>
                 <th scope="row"><c:out value="${board.title}" /></th>
             </tr>
-            <tr class="table-active">
+            <tr class="table">
                 <th scope="row">작성자</th>
                 <th scope="row"><c:out value="${board.writer}" /></th>
             </tr>
-            <tr class="table-active">
+            <tr class="table">
                 <th scope="row">작성일</th>
                 <th scope="row"><c:out value="${board.createdAt}" /></th>
             </tr>
@@ -32,9 +32,9 @@
                 <th scope="row"><c:out value="${board.updatedAt}" /></th>
             </tr>
             </c:if>
-            <tr class="table-active">
+            <tr class="table">
                 <th colspan="2" scope="row">
-                    <div id="th-board-contents"></div>
+                    <div id="th-board-contents" data-contents="${board.contents}"></div>
                 </th>
             </tr>
         </table>
@@ -43,10 +43,9 @@
 </body>
 
 <script>
-    const contents = `\`${board.contents}\``;
-    document.getElementById('th-board-contents').innerHTML = marked.parse(contents);
-    document.querySelectorAll('pre code').forEach((b) => {
-        hljs.highlightBlock(b);
+    $(document).ready(function () {
+        const contents = $('#th-board-contents').data('contents');
+        document.getElementById('th-board-contents').innerHTML = marked.parse(contents);
     });
 </script>
 </html>
