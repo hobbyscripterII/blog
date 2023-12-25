@@ -10,7 +10,7 @@
 <jsp:include page="../layout/header.jsp"/>
 <jsp:include page="../layout/nav.jsp"/>
 <div class="content">
-        <h2>${board.boardCategoryName} 게시판</h2>
+    <h2 style="color: black; text-align: center">${board.boardCategoryName} 게시판</h2>
 
     <div class="div-board-list-wrap">
         <table class="table">
@@ -33,10 +33,20 @@
             </tr>
             </c:if>
             <tr class="table-active">
-                <th colspan="2" scope="row"><c:out value="${board.contents}" /></th>
+                <th colspan="2" scope="row">
+                    <div id="th-board-contents"></div>
+                </th>
             </tr>
         </table>
     </div>
 </div>
 </body>
+
+<script>
+    const contents = `\`${board.contents}\``;
+    document.getElementById('th-board-contents').innerHTML = marked.parse(contents);
+    document.querySelectorAll('pre code').forEach((b) => {
+        hljs.highlightBlock(b);
+    });
+</script>
 </html>

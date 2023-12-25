@@ -20,16 +20,16 @@
 <jsp:include page="../layout/header.jsp"/>
 <jsp:include page="../layout/nav.jsp"/>
 <div class="content">
-    <h2>${board.name} 게시판</h2>
+    <h2 style="color: black; text-align: center">${board.name} 게시판</h2>
 
     <div class="div-board-list-wrap">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th scope="col">글 번호</th>
-                <th scope="col" style="width: 400px">제목</th>
-                <th scope="col" style="width: 150px">작성자</th>
-                <th scope="col">작성일</th>
+                <th scope="col" style="width: 10%">글 번호</th>
+                <th scope="col" style="width: 50%">제목</th>
+                <th scope="col" style="width: 20%">작성자</th>
+                <th scope="col" style="width: 20%">작성일</th>
             </tr>
             </thead>
             <tbody>
