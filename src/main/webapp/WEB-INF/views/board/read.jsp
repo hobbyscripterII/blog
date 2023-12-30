@@ -45,8 +45,7 @@
 <script>
     $(document).ready(function () {
         const contents = `${board.contents}`;
-        console.log(contents);
-        document.getElementById('th-board-contents').innerHTML = marked.parse(contents);
+        document.getElementById('th-board-contents').innerHTML = contents;
     });
 </script>
 </html>
