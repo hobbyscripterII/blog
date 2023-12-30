@@ -7,13 +7,16 @@
 
 body {
     box-sizing: border-box;
+    display: flex;
     font-family: 'Pretendard-Regular';
-    background-image: url("https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?q=80&w=2013&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    /*background-image: url("/resources/img/img-background-cyberpunk.jpg");*/
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: rgba(255,255,255,0.1);
-    backdrop-filter: blur(1px);
+
+    background-color: white;
+
+    /*background-image: url("https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?q=80&w=2013&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");*/
+    /*background-attachment: fixed;*/
+    /*background-size: cover;*/
+    /*background-color: rgba(255,255,255,0.1);*/
+    /*backdrop-filter: blur(1px);*/
 }
 
 h1, h2, h3, h4 {
