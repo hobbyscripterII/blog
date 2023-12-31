@@ -13,6 +13,9 @@
         INNER JOIN user c
         ON a.iuser = c.iuser
         WHERE b.icategory = #{categoryId}
+        <if test="null != keyword">
+            AND (a.title LIKE CONCAT('%', #{keyword}, '%') OR a.contents LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
         ORDER BY a.iboard DESC
         LIMIT #{pageStart}, #{amount}
     </select>
@@ -34,16 +37,4 @@
         contents = #{contents},
         iuser = #{userId}
     </insert>
-    
-    <select id="getSearchResult">
-        SELECT a.iboard boardId, a.title, c.unm nm, a.created_at createdAt
-        FROM board a
-        INNER JOIN board_category b
-        ON a.icategory = b.icategory
-        INNER JOIN user c
-        ON a.iuser = c.iuser
-        WHERE b.icategory = #{categoryId} AND (a.title LIKE CONCAT('%', #{keyword}, '%') OR a.contents LIKE CONCAT('%', #{keyword}, '%'))
-        ORDER BY a.iboard DESC
-        LIMIT #{pageStart}, #{amount}
-    </select>
 </mapper>

@@ -35,10 +35,10 @@
             <tbody>
             <c:forEach var="l" items="${list}">
                 <tr class="table">
-                    <th scope="row"><c:out value="${l.boardId}" /></th>
-                    <th scope="row"><a class="a-board-title" href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}" /></a></th>
-                    <th scope="row"><c:out value="${l.nm}" /></th>
-                    <th scope="row"><c:out value="${l.createdAt}" /></th>
+                    <th scope="row"><c:out value="${l.boardId}"/></th>
+                    <th scope="row"><a class="a-board-title" href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}"/></a></th>
+                    <th scope="row"><c:out value="${l.nm}"/></th>
+                    <th scope="row"><c:out value="${l.createdAt}"/></th>
                 </tr>
             </c:forEach>
             </tbody>
@@ -60,12 +60,14 @@
             </ul>
         </div>
 
-        <div class="div-write-btn-wrap">
-            <button type="button" class="btn btn-info" onclick="location.href='write?category_id=${board.categoryId}'">글 작성</button>
-        </div>
+        <c:if test="${null != sessionScope.IUSER}">
+            <div class="div-write-btn-wrap">
+                <button type="button" class="btn btn-info" onclick="location.href='write?category_id=${board.categoryId}'">글 작성</button>
+            </div>
+        </c:if>
 
         <div style="display: flex; justify-content: center">
-            <form class="d-flex" style="width: 300px">
+            <form class="d-flex" action="" style="width: 100%">
                 <input class="form-control me-sm-2" id="input-search" type="search" placeholder="검색어를 입력하세요.">
                 <button class="btn btn-secondary my-2 my-sm-0" id="btn-search" type="button">Search</button>
             </form>
@@ -77,7 +79,14 @@
 <script>
     $('#btn-search').click(function () {
         const search = $('#input-search').val();
-        location.href='/board/list?category_id=${board.categoryId}&keyword='+search;
+        location.href = '/board/list?category_id=${board.categoryId}&keyword=' + search;
+    });
+
+    $('#input-search').keypress(function (e) {
+        if(e.keyCode === 13) {
+            const search = $('#input-search').val();
+            alert(search);
+        }
     });
 </script>
 </html>

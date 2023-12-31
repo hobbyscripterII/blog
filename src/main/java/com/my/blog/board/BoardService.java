@@ -16,10 +16,6 @@ import java.util.List;
 public class BoardService {
     private final BoardMapper mapper;
 
-    public List<BoardVo.Get> getSearchResult(PageNation.Criteria criteria) {
-        return mapper.getSearchResult(criteria);
-    }
-
     public BoardCategoryDto getBoardCategory(int categoryId) {
         return mapper.getBoardCategory(categoryId);
     }
