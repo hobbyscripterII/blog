@@ -4,14 +4,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 90vw;
+    width: 90%;
     padding-top: 20px;
     align-content: baseline;
-    right: -20px;
+    right: 0;
+}
+
+.div-board-list-wrap, .div-board-list-wrap {
+    width: 100%;
+    padding: 10px;
+}
+
+.div-board-write-wrap {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .div-board-list-wrap {
-    width: 90%;
+    text-align: end;
 }
 
 .a-board-title {
@@ -30,6 +40,15 @@
     /*width: 1000px;*/
 }
 
+#div-markdown-contents, #textarea-board-form {
+    width: 40vw;
+    height: 600px;
+}
+
+#div-markdown-contents {
+    margin-left: 5px;
+}
+
 .toolbar {
     font-size: 1em;
     background: transparent;
@@ -41,4 +60,12 @@
 div.code-toolbar>.toolbar span {
     box-shadow: 0 0px;
     font-size: 1em;
+}
+
+.dropdown-item {
+    color: #000 !important;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    margin-top: 0px;
 }

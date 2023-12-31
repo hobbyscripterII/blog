@@ -41,6 +41,7 @@ public class UserController {
                 HttpSession session = request.getSession();
                 session.setAttribute(Const.IUSER, user.getIuser());
                 session.setAttribute(Const.UNM, user.getUnm());
+                log.info("userId = {}", session.getAttribute(Const.IUSER));
                 return Const.SUCCESS;
             }
             return Const.FAIL;

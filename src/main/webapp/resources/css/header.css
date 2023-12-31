@@ -25,6 +25,11 @@ nav {
     text-decoration: none;
 }
 
+.li-nav > a:hover {
+    transition: 0.8s;
+    color: lightgray;
+}
+
 #a-title {
     font-size: 25px;
 }

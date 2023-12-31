@@ -2,9 +2,11 @@ package com.my.blog.board.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class BoardVo {
     @Getter
+    @ToString
     public static class Get {
         private int boardId;
         private String title;

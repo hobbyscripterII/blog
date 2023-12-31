@@ -27,7 +27,7 @@
                 <label class="form-label mt-4">닉네임</label>
                 <input type="text" class="form-control" name="unm" placeholder="닉네임을 입력하세요." autocomplete="off">
             </div>
-            <button type="button" class="btn btn-success mt-4" id="btn-sign-up" style="width: 100%">회원가입</button>
+            <button type="button" class="btn btn-outline-secondary mt-4" id="btn-sign-up" style="width: 100%">회원가입</button>
         </form>
     </div>
 </div>

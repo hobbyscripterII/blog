@@ -3,8 +3,7 @@
 
 <nav>
     <li class="li-nav">
-        <a id="a-title" href="/">주영이 블로그
-        </a>
+        <a id="a-title" href="/">주영이 블로그</a>
     </li>
     <li class="li-nav">
         <a class="" href="/board/list?category_id=1">일기</a>
@@ -13,7 +12,7 @@
         <a class="" href="/board/list?category_id=2">공부</a>
     </li>
     <li class="li-nav dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">기타</a>
+        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">기타</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/board/list?category_id=3">관심</a>
             <div class="dropdown-divider"></div>
@@ -28,12 +27,12 @@
     <c:choose>
         <c:when test="${sessionScope.IUSER == null}">
             <li class="li-nav">
-                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">로그인</a>
+                <a class="" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">로그인</a>
             </li>
         </c:when>
         <c:otherwise>
             <li class="li-nav">
-                <a class="nav-link" id="a-logout" style="cursor: pointer">로그아웃</a>
+                <a class="" id="a-logout" style="cursor: pointer">로그아웃</a>
             </li>
         </c:otherwise>
     </c:choose>
@@ -43,57 +42,6 @@
     <%--        <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>--%>
     <%--    </form>--%>
 </nav>
-
-<%--<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">--%>
-<%--    <div class="container-fluid">--%>
-<%--        <a class="navbar-brand" href="/">my blog</a>--%>
-<%--        <div class="navbar-collapse collapse" id="navbarColor02" style="">--%>
-<%--            <ul class="navbar-nav me-auto">--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link active" href="/">home--%>
-<%--                    </a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="/board/list?category_id=1">diary</a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="/board/list?category_id=2">study</a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="#">setting</a>--%>
-<%--                </li>--%>
-
-<%--                <c:choose>--%>
-<%--                    <c:when test="${sessionScope.IUSER == null}">--%>
-<%--                        <li class="nav-item">--%>
-<%--                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">sign in</a>--%>
-<%--                        </li>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <li class="nav-item">--%>
-<%--                            <a class="nav-link" id="a-logout" style="cursor: pointer">logout</a>--%>
-<%--                        </li>--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-
-
-<%--                <li class="nav-item dropdown">--%>
-<%--                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">etc</a>--%>
-<%--                    <div class="dropdown-menu">--%>
-<%--                        <a class="dropdown-item" href="/board/list?category_id=3">like</a>--%>
-<%--                        <div class="dropdown-divider"></div>--%>
-<%--                        &lt;%&ndash;                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-login">sign in</a>&ndash;%&gt;--%>
-<%--                        <a class="dropdown-item" href="/sign-up">sign up</a>--%>
-<%--                    </div>--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-<%--            <form class="d-flex">--%>
-<%--                <input class="form-control me-sm-2" type="search" placeholder="Search">--%>
-<%--                <button class="btn btn-secondary my-2 my-sm-0" type="submit">search</button>--%>
-<%--            </form>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</nav>--%>
 
 <div class="modal" id="modal-login">
     <div class="modal-dialog modal-dialog-centered" role="document"> <!-- modal-dialog-centered: 모달 세로 중간 정렬 -->
@@ -137,7 +85,7 @@
             let data = {"uid" : uid.val(), "upw" : upw.val()};
             $.ajax({
                 type: 'post',
-                url: 'sign-in',
+                url: '/sign-in',
                 dataType: 'json',
                 contentType: 'application/json; charset:UTF-8',
                 data: JSON.stringify(data),
@@ -145,8 +93,7 @@
                     if(data == 0) {
                         alert('아이디 혹은 비밀번호를 확인해주세요.');
                     } else {
-                        alert('로그인에 성공했습니다. 메인 화면으로 이동합니다.');
-                        location.href='/';
+                        alert('로그인이 완료되었습니다.');
                     }
                 }
             })
