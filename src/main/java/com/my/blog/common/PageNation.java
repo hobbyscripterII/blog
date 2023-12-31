@@ -50,11 +50,12 @@ public class PageNation {
     // 페이징 처리
     @Getter
     @Setter
-    @ToString
     public static class Criteria {
         private int categoryId; // 다중 게시판 식별코드
         private int page; // 페이지 번호
         private int amount; // 한 페이지당 보여 줄 게시글 개수
+
+        private String keyword; // search
 
         // 기본값 설정
         public Criteria() {

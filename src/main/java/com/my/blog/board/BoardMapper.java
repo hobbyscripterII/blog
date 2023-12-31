@@ -12,6 +12,7 @@ import java.util.List;
 public interface BoardMapper {
     BoardCategoryDto getBoardCategory(int categoryId);
     List<BoardVo.Get> getBoard(PageNation.Criteria criteria);
+    List<BoardVo.Get> getSearchResult(PageNation.Criteria criteria);
     BoardVo.Sel setBoard(int boardId);
     int insBoard(BoardInsDto dto);
 }

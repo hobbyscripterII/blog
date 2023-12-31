@@ -24,10 +24,10 @@ public class BoardController {
     private final BoardService service;
 
     @GetMapping("/list")
-    public String getBoardList(PageNation.Criteria criteria, @RequestParam(name = "category_id", required = false) int categoryId, Model model) {
+    public String getBoardList(PageNation.Criteria criteria, @RequestParam(name = "category_id", required = false) int categoryId, @RequestParam(name = "keyword", required = false) String keyword, Model model) {
         criteria.setCategoryId(categoryId);
         BoardCategoryDto board = service.getBoardCategory(categoryId);
-        List<BoardVo.Get> list = service.getBoard(criteria);
+        List<BoardVo.Get> list = keyword != null ? service.getSearchResult(criteria) : service.getBoard(criteria);
         PageNation pageNation = new PageNation(criteria, list.size());
         model.addAttribute("board", board); // 게시판 카테고리 아이디, 게시판 이름
         model.addAttribute("list", list);

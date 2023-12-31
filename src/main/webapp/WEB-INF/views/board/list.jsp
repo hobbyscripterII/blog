@@ -59,10 +59,25 @@
                 </li>
             </ul>
         </div>
+
         <div class="div-write-btn-wrap">
             <button type="button" class="btn btn-info" onclick="location.href='write?category_id=${board.categoryId}'">글 작성</button>
+        </div>
+
+        <div style="display: flex; justify-content: center">
+            <form class="d-flex" style="width: 300px">
+                <input class="form-control me-sm-2" id="input-search" type="search" placeholder="검색어를 입력하세요.">
+                <button class="btn btn-secondary my-2 my-sm-0" id="btn-search" type="button">Search</button>
+            </form>
         </div>
     </div>
 </div>
 </body>
+
+<script>
+    $('#btn-search').click(function () {
+        const search = $('#input-search').val();
+        location.href='/board/list?category_id=${board.categoryId}&keyword='+search;
+    });
+</script>
 </html>
