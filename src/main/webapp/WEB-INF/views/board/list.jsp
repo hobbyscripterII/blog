@@ -43,7 +43,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <div class="div-board-write-wrap">
+        <div class="div-pagination-wrap">
             <ul class="pagination pagination-sm">
                 <li class="page-item">
                     <a class="page-link" href="/board/list?category_id=${board.categoryId}&page=1&amount=${pageNation.amount}">&laquo;</a>
@@ -58,7 +58,8 @@
                     <a class="page-link" href="/board/list?category_id=${board.categoryId}&page=${pageNation.realEnd}&amount=${pageNation.amount}">&raquo;</a>
                 </li>
             </ul>
-
+        </div>
+        <div class="div-write-btn-wrap">
             <button type="button" class="btn btn-info" onclick="location.href='write?category_id=${board.categoryId}'">글 작성</button>
         </div>
     </div>

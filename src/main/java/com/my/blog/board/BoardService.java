@@ -24,10 +24,6 @@ public class BoardService {
         return mapper.getBoard(criteria);
     }
 
-    public int getBoardCnt(int categoryId) {
-        return mapper.getBoardCnt(categoryId);
-    }
-
     public BoardVo.Sel selBoard(int boardId) {
         return mapper.setBoard(boardId);
     }

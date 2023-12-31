@@ -10,18 +10,24 @@
     right: 0;
 }
 
-.div-board-list-wrap, .div-board-list-wrap {
+.div-board-list-wrap {
     width: 100%;
     padding: 10px;
+    text-align: end;
 }
 
 .div-board-write-wrap {
-    display: flex;
-    justify-content: space-evenly;
+    display: block;
 }
 
-.div-board-list-wrap {
-    text-align: end;
+.div-pagination-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.div-write-btn-wrap {
+    width: 100%;
+    margin-top: -50px;
 }
 
 .a-board-title {
