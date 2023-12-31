@@ -1,39 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<style>
-    .li-nav {
-        list-style-type: none;
-    }
-</style>
-
 <nav>
-                    <li class="li-nav">
-                        <a class="" href="/">home
-                        </a>
-                    </li>
-                    <li class="li-nav">
-                        <a class="" href="/board/list?category_id=1">diary</a>
-                    </li>
-                    <li class="li-nav">
-                        <a class="" href="/board/list?category_id=2">study</a>
-                    </li>
-                    <li class="li-nav">
-                        <a class="" href="#">setting</a>
-                    </li>
+    <li class="li-nav">
+        <a id="a-title" href="/">주영이 블로그
+        </a>
+    </li>
+    <li class="li-nav">
+        <a class="" href="/board/list?category_id=1">일기</a>
+    </li>
+    <li class="li-nav">
+        <a class="" href="/board/list?category_id=2">공부</a>
+    </li>
+    <li class="li-nav dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">기타</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="/board/list?category_id=3">관심</a>
+            <div class="dropdown-divider"></div>
+            <%--                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-login">sign in</a>--%>
+            <a class="dropdown-item" href="/sign-up">회원가입</a>
+        </div>
+    </li>
+    <li class="li-nav">
+        <a class="" href="#">관리자 페이지</a>
+    </li>
 
-                    <c:choose>
-                        <c:when test="${sessionScope.IUSER == null}">
-                            <li class="li-nav">
-                                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">sign in</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="li-nav">
-                                <a class="nav-link" id="a-logout" style="cursor: pointer">logout</a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
+    <c:choose>
+        <c:when test="${sessionScope.IUSER == null}">
+            <li class="li-nav">
+                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">로그인</a>
+            </li>
+        </c:when>
+        <c:otherwise>
+            <li class="li-nav">
+                <a class="nav-link" id="a-logout" style="cursor: pointer">로그아웃</a>
+            </li>
+        </c:otherwise>
+    </c:choose>
+
+    <%--    <form class="d-flex">--%>
+    <%--        <input class="form-control me-sm-2" type="search" placeholder="Search">--%>
+    <%--        <button class="btn btn-secondary my-2 my-sm-0" type="submit">검색</button>--%>
+    <%--    </form>--%>
 </nav>
 
 <%--<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">--%>

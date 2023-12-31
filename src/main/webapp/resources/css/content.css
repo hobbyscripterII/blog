@@ -1,21 +1,22 @@
 .content {
     box-sizing: border-box;
-    position: relative;
+    position: absolute;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 90vw;
     padding-top: 20px;
     align-content: baseline;
+    right: -20px;
 }
 
 .div-board-list-wrap {
-    width: 1000px;
+    width: 90%;
 }
 
 .a-board-title {
-    color: white;
     text-decoration: none;
+    color: #000;
 }
 
 .div-carousel-wrap {
@@ -25,11 +26,19 @@
 }
 
 #th-board-contents {
-    width: 1000px;
+    color: #000;
+    /*width: 1000px;*/
 }
 
-div.code-toolbar>.toolbar a, div.code-toolbar>.toolbar button, div.code-toolbar>.toolbar span {
+.toolbar {
     font-size: 1em;
     background: transparent;
     padding: 0px;
+    top: -2px !important;
+    margin-right: 5px;
+}
+
+div.code-toolbar>.toolbar span {
+    box-shadow: 0 0px;
+    font-size: 1em;
 }

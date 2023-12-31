@@ -44,8 +44,7 @@
 
 <script>
     $(document).ready(function () {
-        const contents = `${board.contents}`;
-        document.getElementById('th-board-contents').innerHTML = contents;
+        document.getElementById('th-board-contents').innerHTML = `${board.contents}`;
     });
 </script>
 </html>

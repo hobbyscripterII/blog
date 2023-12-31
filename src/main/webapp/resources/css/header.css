@@ -1,11 +1,3 @@
-/*header {*/
-/*    color: white;*/
-/*    font-size: 1.5rem;*/
-/*    display: block;*/
-/*    text-align: center;*/
-/*    padding-bottom: 20px;*/
-/*}*/
-
 .navbar {
     position: sticky;
     top: 0;
@@ -16,8 +8,27 @@
 }
 
 nav {
+    position: fixed;
     display: block;
     height: 100%;
     width: 10vw;
-    background-color: #99CCFF;
+    background-color: #233067;
+}
+
+.li-nav {
+    list-style-type: none;
+    padding: 10px 0 10px 20px;
+}
+
+.li-nav > a {
+    color: white;
+    text-decoration: none;
+}
+
+#a-title {
+    font-size: 25px;
+}
+
+.d-flex {
+    height: 40px;
 }
