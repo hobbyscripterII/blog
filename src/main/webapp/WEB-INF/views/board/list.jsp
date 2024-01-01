@@ -27,8 +27,18 @@
             <thead>
             <tr>
                 <th scope="col" style="width: 10%">글 번호</th>
+                <th scope="col" style="width: 10%">
+                    <c:choose>
+                        <c:when test="${board.boardName == '일기'}">
+                            기분
+                        </c:when>
+                        <c:otherwise>
+                            말머리
+                        </c:otherwise>
+                    </c:choose>
+                </th>
                 <th scope="col" style="width: 45%">제목</th>
-                <th scope="col" style="width: 20%">작성자</th>
+                <th scope="col" style="width: 10%">작성자</th>
                 <th scope="col" style="width: 25%">작성일</th>
             </tr>
             </thead>
@@ -36,6 +46,7 @@
             <c:forEach var="l" items="${list}">
                 <tr class="table">
                     <th scope="row"><c:out value="${l.boardId}"/></th>
+                    <th scope="row"><c:out value="${l.subjectName}"/></th>
                     <th scope="row"><a class="a-board-title" href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}"/></a></th>
                     <th scope="row"><c:out value="${l.nm}"/></th>
                     <th scope="row"><c:out value="${l.createdAt}"/></th>

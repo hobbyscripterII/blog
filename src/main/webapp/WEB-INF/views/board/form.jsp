@@ -14,6 +14,26 @@
 
     <div class="div-board-list-wrap">
         <table class="table">
+            <tr>
+                <th scope="row">
+                    <c:choose>
+                        <c:when test="${board.boardName == '일기'}">
+                            기분
+                        </c:when>
+                        <c:otherwise>
+                            말머리
+                        </c:otherwise>
+                    </c:choose>
+                </th>
+                <th scope="row">
+                    <select class="form-select" name="subject" id="subject" style="width: 200px">
+                        <option value="null" label=" "></option>
+                        <c:forEach var="s" items="${subject}">
+                            <option id="subjectName" value="${s.subjectId}" label="${s.subjectName}"></option>
+                        </c:forEach>
+                    </select>
+                </th>
+            </tr>
             <tr class="table">
                 <th rowspan="2" scope="row">제목</th>
                 <th scope="row">
@@ -58,16 +78,17 @@
 
     const title = $('.title');
     const contents = $('.contents');
+    const subjectId = $('#subject');
 
     $('#btn-board-write').click(function() {
-        let data = {"title" : title.val(), "contents" : contents.val()};
+        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
         const url = '/board/write?category_id=' + `${board.categoryId}`;
         const name = '등록';
         boardAjax(data, url, name);
     });
 
     $('#btn-board-update').click(function () {
-        let data = {"boardId": `${dto.boardId}`, "title" : title.val(), "contents" : contents.val()};
+        const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
         const url = '/board/update';
         const name = '수정';
         boardAjax(data, url, name);

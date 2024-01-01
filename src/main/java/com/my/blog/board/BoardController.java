@@ -48,7 +48,9 @@ public class BoardController {
     @GetMapping("/write")
     public String insBoard(@RequestParam(name = "category_id") int categoryId, Model model) {
         BoardCategoryDto board = service.getBoardCategory(categoryId);
+        List<BoardVo.Subject> subject = service.getSubject(categoryId);
         model.addAttribute("board", board);
+        model.addAttribute("subject", subject);
         return "/board/form";
     }
 

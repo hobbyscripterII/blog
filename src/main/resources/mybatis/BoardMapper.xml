@@ -6,12 +6,14 @@
     </select>
 
     <select id="getBoard">
-        SELECT a.iboard boardId, a.title, c.unm nm, a.created_at createdAt
+        SELECT a.iboard boardId, a.title, d.NAME subjectName, c.unm nm, a.created_at createdAt
         FROM board a
         INNER JOIN board_category b
         ON a.icategory = b.icategory
         INNER JOIN user c
         ON a.iuser = c.iuser
+        INNER JOIN board_subject d
+        ON a.isubject = d.isubject
         WHERE b.icategory = #{categoryId}
         <if test="null != keyword">
             AND (a.title LIKE CONCAT('%', #{keyword}, '%') OR a.contents LIKE CONCAT('%', #{keyword}, '%'))
@@ -33,6 +35,7 @@
     <insert id="insBoard" useGeneratedKeys="true" keyProperty="boardId">
         INSERT INTO board SET
         icategory = #{categoryId},
+        isubject = ${subjectId},
         title = #{title},
         contents = #{contents},
         iuser = #{userId}
@@ -45,7 +48,12 @@
     <update id="updBoard">
         UPDATE board SET
         title = #{title},
+        isubject = ${subjectId},
         contents = #{contents}
         WHERE iboard = #{boardId}
     </update>
+
+    <select id="getSubject">
+        SELECT isubject subjectId, NAME subjectName FROM board_subject WHERE icategory = #{categoryId}
+    </select>
 </mapper>

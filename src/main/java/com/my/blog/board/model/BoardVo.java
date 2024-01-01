@@ -6,9 +6,9 @@ import lombok.ToString;
 
 public class BoardVo {
     @Getter
-    @ToString
     public static class Get {
         private int boardId;
+        private String subjectName;
         private String title;
         private String nm;
         private String createdAt;
@@ -26,5 +26,11 @@ public class BoardVo {
         private String writer;
         private String createdAt;
         private String updatedAt;
+    }
+
+    @Getter
+    public static class Subject {
+        private String subjectId;
+        private String subjectName;
     }
 }

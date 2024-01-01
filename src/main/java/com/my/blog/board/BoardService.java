@@ -20,6 +20,10 @@ import static com.my.blog.common.Const.SUCCESS;
 public class BoardService {
     private final BoardMapper mapper;
 
+    public List<BoardVo.Subject> getSubject(int categoryId) {
+        return mapper.getSubject(categoryId);
+    }
+
     public BoardCategoryDto getBoardCategory(int categoryId) {
         return mapper.getBoardCategory(categoryId);
     }

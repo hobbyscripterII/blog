@@ -8,6 +8,7 @@ import lombok.Setter;
 public class BoardInsDto {
     private int categoryId;
     private int boardId;
+    private int subjectId;
     private int userId;
     private String title;
     private String contents;

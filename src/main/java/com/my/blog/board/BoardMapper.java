@@ -11,6 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+    List<BoardVo.Subject> getSubject(int categoryId);
     BoardCategoryDto getBoardCategory(int categoryId);
     List<BoardVo.Get> getBoard(PageNation.Criteria criteria);
     BoardVo.Sel setBoard(int boardId);

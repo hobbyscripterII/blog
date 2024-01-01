@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class BoardUpdDto {
     private int boardId;
+    private int subjectId;
     private String title;
     private String contents;
 }
