@@ -40,8 +40,7 @@ public class BoardController {
     @GetMapping("/read")
     public String selBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel board = service.selBoard(boardId);
-        String render = markdownRender(board.getContents());
-        board.setContents(render);
+        board.setContents(CommonUtil.markdown(board.getContents()));
         model.addAttribute("board", board);
         return "/board/read";
     }
@@ -64,7 +63,9 @@ public class BoardController {
     @GetMapping("/update")
     public String updBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel dto = service.selBoard(boardId);
+        BoardCategoryDto board = service.getBoardCategory(dto.getCategoryId());
         model.addAttribute("dto", dto);
+        model.addAttribute("board", board);
         return "/board/form";
     }
 
@@ -78,11 +79,6 @@ public class BoardController {
     @ResponseBody
     public int delBoard(int boardId) {
         return service.delBoard(boardId);
-    }
-
-    // 마크다운 렌더링
-    public String markdownRender(String contents) {
-        return CommonUtil.markdown(contents);
     }
 
     // session에 저장된 회원 아이디(PK)

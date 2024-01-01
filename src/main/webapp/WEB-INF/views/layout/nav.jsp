@@ -16,11 +16,11 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/board/list?category_id=3">관심</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/sign-up">회원가입</a>
+            <a class="dropdown-item disabled" href="/sign-up">회원가입</a>
         </div>
     </li>
     <li class="li-nav">
-        <a class="" href="#">관리자 페이지</a>
+        <a class="" href="/admin">관리자 페이지</a>
     </li>
 
     <c:choose>

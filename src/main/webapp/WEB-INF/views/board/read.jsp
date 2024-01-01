@@ -55,13 +55,13 @@
             $.ajax({
                 type: 'post',
                 url: '/board/delete',
-                data: {"boardId" : ${board.boardId}},
+                data: {"boardId" : `${board.boardId}`},
                 success: function(data) {
                     if(data == 0) {
                         alert('삭제에 실패했습니다. 잠시 후 시도해주세요.');
                     } else {
                         alert('게시글 삭제가 완료되었습니다. 목록 화면으로 이동합니다.');
-                        location.href = '/board/list?category_id=' + ${board.categoryId};
+                        location.href = '/board/list?category_id=' + `${board.categoryId}`;
                     }
                 }
             })

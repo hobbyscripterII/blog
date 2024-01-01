@@ -61,19 +61,19 @@
 
     $('#btn-board-write').click(function() {
         let data = {"title" : title.val(), "contents" : contents.val()};
-        const url = '/board/write?category_id=${board.categoryId}';
-        const msg = '등록';
-        boardAjax(data, url, msg);
+        const url = '/board/write?category_id=' + `${board.categoryId}`;
+        const name = '등록';
+        boardAjax(data, url, name);
     });
 
     $('#btn-board-update').click(function () {
         let data = {"boardId": `${dto.boardId}`, "title" : title.val(), "contents" : contents.val()};
         const url = '/board/update';
-        const msg = '수정';
-        boardAjax(data, url, msg);
+        const name = '수정';
+        boardAjax(data, url, name);
     });
 
-    function boardAjax(data, url, msg) {
+    function boardAjax(data, url, name) {
         if (!data.title) {
             alert('제목을 입력해주세요.');
             data.title.focus();
@@ -89,13 +89,19 @@
                 data: JSON.stringify(data),
                 success: function(data) {
                     if(data == 0) {
-                        alert(msg +'에 실패했습니다. 잠시 후 다시 이용해주세요.');
+                        alert(name +'에 실패했습니다. 잠시 후 다시 이용해주세요.');
                     } else {
-                        if(confirm('글이 정상적으로 ' + msg + '되었습니다. ' + msg + '된 글을 확인하러 가시겠습니까?')) {
-                            location.href='/board/read?board_id=' + `${dto.boardId}`;
+                        if (confirm('글이 정상적으로 ' + name + '되었습니다. ' + name + '된 글을 확인하러 가시겠습니까?')) {
+                            let path = '/board/read?board_id=';
+
+                            if (name == '등록') {
+                                location.href = path + data;
+                            } else {
+                                location.href = path + `${dto.boardId}`;
+                            }
                         } else {
                             alert('게시글 목록 화면으로 이동합니다.');
-                            location.href='/board/list?category_id=' + `${board.categoryId}`;
+                            location.href = '/board/list?category_id=' + `${board.categoryId}`;
                         }
                     }
                 }

@@ -10,6 +10,7 @@
     right: 0;
 }
 
+/* board */
 .div-board-list-wrap {
     width: 100%;
     padding: 10px;
@@ -52,7 +53,9 @@
 }
 
 #div-markdown-contents {
+    height: 600px;
     margin-left: 5px;
+    overflow: auto;
 }
 
 .toolbar {
@@ -74,4 +77,17 @@ div.code-toolbar>.toolbar span {
 
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
     margin-top: 0px;
+}
+
+/* admin */
+.div-admin-tap-wrap {
+    margin: 10px;
+}
+
+.tab-pane {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
 }
