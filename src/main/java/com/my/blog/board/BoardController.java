@@ -66,8 +66,10 @@ public class BoardController {
     public String updBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel dto = service.selBoard(boardId);
         BoardCategoryDto board = service.getBoardCategory(dto.getCategoryId());
+        List<BoardVo.Subject> subject = service.getSubject(dto.getCategoryId());
         model.addAttribute("dto", dto);
         model.addAttribute("board", board);
+        model.addAttribute("subject", subject);
         return "/board/form";
     }
 

@@ -88,7 +88,7 @@
     });
 
     $('#btn-board-update').click(function () {
-        const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
+        const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
         const url = '/board/update';
         const name = '수정';
         boardAjax(data, url, name);

@@ -46,7 +46,7 @@
             <c:forEach var="l" items="${list}">
                 <tr class="table">
                     <th scope="row"><c:out value="${l.boardId}"/></th>
-                    <th scope="row"><c:out value="${l.subjectName}"/></th>
+                    <th scope="row" id="subjectName" data-diary-emoji="${l.subjectName}"><c:out value="${l.subjectName}"/></th>
                     <th scope="row"><a class="a-board-title" href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}"/></a></th>
                     <th scope="row"><c:out value="${l.nm}"/></th>
                     <th scope="row"><c:out value="${l.createdAt}"/></th>
@@ -88,16 +88,35 @@
 </body>
 
 <script>
+    const boardName = '${board.boardName}';
+
+    $(document).ready(function () {
+        if(boardName === '일기') {
+            const subjectId = $('#subjectName').data('diary-emoji');
+            let emoji = null;
+
+            if(subjectId == 1) {
+                emoji = '😊';
+            } else if(subjectId == 2) {
+                emoji = '🥹';
+            } else {
+                emoji = '😵';
+            }
+
+            document.getElementById('subjectName').innerHTML = emoji;
+        }
+    });
+
     $('#btn-search').click(function () {
         const search = $('#input-search').val();
         location.href = '/board/list?category_id=${board.categoryId}&keyword=' + search;
     });
 
-    $('#input-search').keypress(function (e) {
-        if(e.keyCode === 13) {
-            const search = $('#input-search').val();
-            alert(search);
-        }
-    });
+    // $('#input-search').keypress(function (e) {
+    //     if(e.keyCode === 13) {
+    //         const search = $('#input-search').val();
+    //         alert(search);
+    //     }
+    // });
 </script>
 </html>
