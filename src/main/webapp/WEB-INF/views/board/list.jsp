@@ -67,7 +67,7 @@
         </c:if>
 
         <div style="display: flex; justify-content: center">
-            <form class="d-flex" action="" style="width: 100%">
+            <form class="d-flex" action="" style="width: 400px; margin-left: 90px">
                 <input class="form-control me-sm-2" id="input-search" type="search" placeholder="검색어를 입력하세요.">
                 <button class="btn btn-secondary my-2 my-sm-0" id="btn-search" type="button">Search</button>
             </form>

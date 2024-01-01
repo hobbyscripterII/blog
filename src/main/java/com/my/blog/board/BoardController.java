@@ -65,6 +65,12 @@ public class BoardController {
         return service.insBoard(dto);
     }
 
+    @PostMapping("/delete")
+    @ResponseBody
+    public int delBoard(int boardId) {
+        return service.delBoard(boardId);
+    }
+
     // session에 저장된 회원 아이디(PK)
     public int getUserId(HttpServletRequest request) {
         HttpSession session = request.getSession();

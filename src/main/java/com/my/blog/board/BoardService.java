@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.my.blog.common.Const.FAIL;
+import static com.my.blog.common.Const.SUCCESS;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -34,5 +37,9 @@ public class BoardService {
         } else {
             return Const.FAIL;
         }
+    }
+
+    public int delBoard(int boardId) {
+        return Utils.isNotNull(mapper.delBoard(boardId)) ? SUCCESS : FAIL;
     }
 }

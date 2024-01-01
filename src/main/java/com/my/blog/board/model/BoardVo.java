@@ -17,6 +17,7 @@ public class BoardVo {
     @Getter
     @Setter
     public static class Sel {
+        private int categoryId;
         private String boardCategoryName;
         private String title;
         private String contents;

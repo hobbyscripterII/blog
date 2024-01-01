@@ -21,7 +21,7 @@
     </select>
 
     <select id="setBoard">
-        SELECT b.name boardCategoryName, a.title, a.contents, c.unm writer, a.created_at createdAt, a.updated_at updatedAt
+        SELECT b.icategory categoryId, b.name boardCategoryName, a.title, a.contents, c.unm writer, a.created_at createdAt, a.updated_at updatedAt
         FROM board a
         INNER JOIN board_category b
         ON a.icategory = b.icategory
@@ -37,4 +37,8 @@
         contents = #{contents},
         iuser = #{userId}
     </insert>
+
+    <delete id="delBoard">
+        DELETE FROM board WHERE iboard = #{boardId}
+    </delete>
 </mapper>
