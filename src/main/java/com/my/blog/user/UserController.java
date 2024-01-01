@@ -39,9 +39,8 @@ public class UserController {
 
             if (Utils.isNotNull(user)) {
                 HttpSession session = request.getSession();
-                session.setAttribute(Const.IUSER, user.getIuser());
-                session.setAttribute(Const.UNM, user.getUnm());
-                log.info("userId = {}", session.getAttribute(Const.IUSER));
+                session.setAttribute(Const.USER_ID, user.getIuser());
+                session.setAttribute(Const.USER_NAME, user.getUnm());
                 return Const.SUCCESS;
             }
             return Const.FAIL;

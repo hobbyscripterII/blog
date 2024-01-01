@@ -18,6 +18,8 @@ public class BoardVo {
     @Setter
     public static class Sel {
         private int categoryId;
+        private int boardId;
+        private int userId;
         private String boardCategoryName;
         private String title;
         private String contents;

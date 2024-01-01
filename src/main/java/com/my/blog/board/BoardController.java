@@ -2,6 +2,7 @@ package com.my.blog.board;
 
 import com.my.blog.board.model.BoardCategoryDto;
 import com.my.blog.board.model.BoardInsDto;
+import com.my.blog.board.model.BoardUpdDto;
 import com.my.blog.board.model.BoardVo;
 import com.my.blog.common.CommonUtil;
 import com.my.blog.common.Const;
@@ -39,17 +40,16 @@ public class BoardController {
     @GetMapping("/read")
     public String selBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel board = service.selBoard(boardId);
-        // 1. 게시글 불러올 때 마크다운 렌더링
-//        String contents_ = board.getContents();
-//        String contents = CommonUtil.markdown(contents_);
-//        board.setContents(contents);
+        String render = markdownRender(board.getContents());
+        board.setContents(render);
         model.addAttribute("board", board);
         return "/board/read";
     }
 
     @GetMapping("/write")
     public String insBoard(@RequestParam(name = "category_id") int categoryId, Model model) {
-        model.addAttribute("categoryId", categoryId);
+        BoardCategoryDto board = service.getBoardCategory(categoryId);
+        model.addAttribute("board", board);
         return "/board/form";
     }
 
@@ -58,11 +58,20 @@ public class BoardController {
     public int insBoard(@RequestParam(name = "category_id") int categoryId, @RequestBody BoardInsDto dto, HttpServletRequest request) {
         dto.setCategoryId(categoryId);
         dto.setUserId(getUserId(request));
-        // 2. 게시글 등록할 때 마크다운 렌더링
-        String contents_ = dto.getContents();
-        String contents = CommonUtil.markdown(contents_);
-        dto.setContents(contents);
         return service.insBoard(dto);
+    }
+
+    @GetMapping("/update")
+    public String updBoard(@RequestParam(name = "board_id") int boardId, Model model) {
+        BoardVo.Sel dto = service.selBoard(boardId);
+        model.addAttribute("dto", dto);
+        return "/board/form";
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public int updBoard(@RequestBody BoardUpdDto dto) {
+        return service.updBoard(dto);
     }
 
     @PostMapping("/delete")
@@ -71,9 +80,14 @@ public class BoardController {
         return service.delBoard(boardId);
     }
 
+    // 마크다운 렌더링
+    public String markdownRender(String contents) {
+        return CommonUtil.markdown(contents);
+    }
+
     // session에 저장된 회원 아이디(PK)
     public int getUserId(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return Integer.parseInt(String.valueOf(session.getAttribute(Const.IUSER)));
+        return Integer.parseInt(String.valueOf(session.getAttribute(Const.USER_ID)));
     }
 }

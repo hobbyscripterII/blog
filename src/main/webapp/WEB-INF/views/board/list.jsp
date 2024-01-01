@@ -60,7 +60,7 @@
             </ul>
         </div>
 
-        <c:if test="${null != sessionScope.IUSER}">
+        <c:if test="${null != sessionScope.USER_ID}">
             <div class="div-write-btn-wrap">
                 <button type="button" class="btn btn-info" onclick="location.href='write?category_id=${board.categoryId}'">글 작성</button>
             </div>

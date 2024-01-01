@@ -16,7 +16,6 @@
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/board/list?category_id=3">관심</a>
             <div class="dropdown-divider"></div>
-            <%--                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-login">sign in</a>--%>
             <a class="dropdown-item" href="/sign-up">회원가입</a>
         </div>
     </li>
@@ -25,7 +24,7 @@
     </li>
 
     <c:choose>
-        <c:when test="${sessionScope.IUSER == null}">
+        <c:when test="${sessionScope.USER_ID == null}">
             <li class="li-nav">
                 <a class="" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">로그인</a>
             </li>

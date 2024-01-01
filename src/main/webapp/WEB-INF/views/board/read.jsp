@@ -40,15 +40,17 @@
         </table>
         <div>
             <button type="button" class="btn btn-light" onclick="location.href='/board/list?category_id=${board.categoryId}'">목록</button>
-            <button type="button" id="" class="btn btn-success">수정</button>
-            <button type="button" id="btn-board-del" class="btn btn-danger">삭제</button>
+            <c:if test="${sessionScope.USER_ID == board.userId}">
+                <button type="button" id="" class="btn btn-success" onclick="location.href='/board/update?board_id=${board.boardId}'">수정</button>
+                <button type="button" id="btn-board-del" class="btn btn-danger">삭제</button>
+            </c:if>
         </div>
     </div>
 </div>
 </body>
 
 <script>
-    $('#btn-board-del').onclick(function() {
+    $('#btn-board-del').click(function() {
         if(confirm('게시글을 삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.')) {
             $.ajax({
                 type: 'post',

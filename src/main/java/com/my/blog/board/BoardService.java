@@ -2,6 +2,7 @@ package com.my.blog.board;
 
 import com.my.blog.board.model.BoardCategoryDto;
 import com.my.blog.board.model.BoardInsDto;
+import com.my.blog.board.model.BoardUpdDto;
 import com.my.blog.board.model.BoardVo;
 import com.my.blog.common.Const;
 import com.my.blog.common.PageNation;
@@ -41,5 +42,9 @@ public class BoardService {
 
     public int delBoard(int boardId) {
         return Utils.isNotNull(mapper.delBoard(boardId)) ? SUCCESS : FAIL;
+    }
+
+    public int updBoard(BoardUpdDto dto) {
+        return Utils.isNotNull(mapper.updBoard(dto)) ? SUCCESS : FAIL;
     }
 }
