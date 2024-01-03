@@ -39,11 +39,11 @@
             </tr>
         </table>
         <div>
-            <button type="button" class="btn btn-light" onclick="location.href='/board/list?category_id=${board.categoryId}'">목록</button>
             <c:if test="${sessionScope.USER_ID == board.userId}">
-                <button type="button" id="" class="btn btn-success" onclick="location.href='/board/update?board_id=${board.boardId}'">수정</button>
                 <button type="button" id="btn-board-del" class="btn btn-danger">삭제</button>
+                <button type="button" id="" class="btn btn-success" onclick="location.href='/board/update?board_id=${board.boardId}'">수정</button>
             </c:if>
+            <button type="button" class="btn btn-light" onclick="location.href='/board/list?category_id=${board.categoryId}'">목록</button>
         </div>
     </div>
 </div>

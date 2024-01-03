@@ -88,22 +88,26 @@
 </body>
 
 <script>
-    const boardName = '${board.boardName}';
-
     $(document).ready(function () {
+        const boardName = '${board.boardName}';
+
         if(boardName === '일기') {
-            const subjectId = $('#subjectName').data('diary-emoji');
-            let emoji = null;
+            const subjectNames = $('[id=subjectName]'); // 해당 id를 가진 모든 엘리먼트를 선택한다.
 
-            if(subjectId == 1) {
-                emoji = '😊';
-            } else if(subjectId == 2) {
-                emoji = '🥹';
-            } else {
-                emoji = '😵';
-            }
+            subjectNames.each(function () {
+                const data = $(this).data('diary-emoji');
+                let emoji = null;
 
-            document.getElementById('subjectName').innerHTML = emoji;
+                if(data === 1) {
+                    emoji = '😊';
+                } else if(data === 2) {
+                    emoji = '🥹';
+                } else {
+                    emoji = '😡';
+                }
+
+                $(this).text(emoji);
+            });
         }
     });
 
