@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.my.blog.board.BoardMapper">
-    <select id="getBoardCategory">
-        SELECT icategory categoryId, name boardName FROM board_category WHERE icategory = #{categoryId}
-    </select>
-
     <select id="getBoard">
         SELECT a.iboard boardId, a.title, d.NAME subjectName, c.unm nm, a.created_at createdAt
         FROM board a
@@ -53,7 +49,11 @@
         WHERE iboard = #{boardId}
     </update>
 
-    <select id="getSubject">
+    <select id="getBoardCategory">
+        SELECT icategory categoryId, name boardName FROM board_category WHERE icategory = #{categoryId}
+    </select>
+
+    <select id="getBoardSubject">
         SELECT isubject subjectId, NAME subjectName FROM board_subject WHERE icategory = #{categoryId}
     </select>
 </mapper>

@@ -28,12 +28,13 @@ public class BoardController {
     public String getBoardList(PageNation.Criteria criteria, @RequestParam(name = "category_id", required = false) int categoryId, @RequestParam(name = "keyword", required = false) String keyword, Model model) {
         criteria.setCategoryId(categoryId);
         BoardCategoryDto board = service.getBoardCategory(categoryId);
-        // 'keyword'에 값이 있다면 mybatis if문으로 검색어가 포함된 게시글을 찾는다.
-        List<BoardVo.Get> list = service.getBoard(criteria);
+        List<BoardVo.Subject> subject = service.getBoardSubject(categoryId);
+        List<BoardVo.Get> list = service.getBoard(criteria); // 'keyword'에 값이 있다면 mybatis if문으로 검색어가 포함된 게시글을 찾는다.
         PageNation pageNation = new PageNation(criteria, list.size());
         model.addAttribute("board", board); // 게시판 카테고리 아이디, 게시판 이름
         model.addAttribute("list", list);
         model.addAttribute("pageNation", pageNation);
+        model.addAttribute("subject", subject);
         return "/board/list";
     }
 
@@ -48,7 +49,7 @@ public class BoardController {
     @GetMapping("/write")
     public String insBoard(@RequestParam(name = "category_id") int categoryId, Model model) {
         BoardCategoryDto board = service.getBoardCategory(categoryId);
-        List<BoardVo.Subject> subject = service.getSubject(categoryId);
+        List<BoardVo.Subject> subject = service.getBoardSubject(categoryId);
         model.addAttribute("board", board);
         model.addAttribute("subject", subject);
         return "/board/form";
@@ -66,7 +67,7 @@ public class BoardController {
     public String updBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel dto = service.selBoard(boardId);
         BoardCategoryDto board = service.getBoardCategory(dto.getCategoryId());
-        List<BoardVo.Subject> subject = service.getSubject(dto.getCategoryId());
+        List<BoardVo.Subject> subject = service.getBoardSubject(dto.getCategoryId());
         model.addAttribute("dto", dto);
         model.addAttribute("board", board);
         model.addAttribute("subject", subject);

@@ -23,6 +23,26 @@
     <h2 style="color: black; text-align: center">${board.boardName} 게시판</h2>
 
     <div class="div-board-list-wrap">
+        <div>
+            <div class="form-group">
+                <label for="exampleSelect1" class="form-label">
+                    <c:choose>
+                        <c:when test="${board.boardName == '일기'}">
+                            기분
+                        </c:when>
+                        <c:otherwise>
+                            말머리
+                        </c:otherwise>
+                    </c:choose>
+                </label>
+                <select class="form-select" id="exampleSelect1">
+                    <c:forEach var="s" items="${subject}">
+                        <option id="option-subject-name" value="${s.subjectName}" data-sel-subject="${s.subjectName}">${s.subjectName}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+
         <table class="table table-hover">
             <thead>
             <tr>
@@ -46,7 +66,7 @@
             <c:forEach var="l" items="${list}">
                 <tr class="table">
                     <th scope="row"><c:out value="${l.boardId}"/></th>
-                    <th scope="row" id="subjectName" data-diary-emoji="${l.subjectName}"><c:out value="${l.subjectName}"/></th>
+                    <th scope="row" id="subjectName" data-get-subject="${l.subjectName}"><c:out value="${l.subjectName}"/></th>
                     <th scope="row"><a class="a-board-title" href="<c:url value="/board/read?board_id=${l.boardId}" />"><c:out value="${l.title}"/></a></th>
                     <th scope="row"><c:out value="${l.nm}"/></th>
                     <th scope="row"><c:out value="${l.createdAt}"/></th>
@@ -92,22 +112,22 @@
         const boardName = '${board.boardName}';
 
         if(boardName === '일기') {
-            const subjectNames = $('[id=subjectName]'); // 해당 id를 가진 모든 엘리먼트를 선택한다.
+            // $('[element=name]'): 해당 id를 가진 모든 엘리먼트를 선택한다.
+            const subjectNames = $('[id=subjectName]');
+            const optionSubjectNames = $('[id=option-subject-name]');
 
             subjectNames.each(function () {
-                const data = $(this).data('diary-emoji');
-                let emoji = null;
-
-                if(data === 1) {
-                    emoji = '😊';
-                } else if(data === 2) {
-                    emoji = '🥹';
-                } else {
-                    emoji = '😡';
-                }
-
-                $(this).text(emoji);
+                updateEmoji($(this), $(this).data('get-subject'));
             });
+
+            optionSubjectNames.each(function () {
+                updateEmoji($(this), $(this).data('sel-subject'));
+            });
+        }
+
+        function updateEmoji(element, data) {
+            let emoji = data === 1 ? '😊' : (data === 2 ? '🥹' : '😡');
+            element.text(emoji);
         }
     });
 
