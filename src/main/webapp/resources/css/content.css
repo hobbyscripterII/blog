@@ -107,3 +107,16 @@ div.code-toolbar>.toolbar span {
     display: flex;
     align-items: center;
 }
+
+/** webeditor **/
+.ck.ck-editor {
+    width: 100% !important;
+    margin-top: 10px !important;
+}
+
+.ck-editor__main {
+    padding: 0px !important;
+}
+.ck-blurred, .ck-focused {
+    height: 300px;
+}
