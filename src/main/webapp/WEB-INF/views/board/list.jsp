@@ -23,24 +23,22 @@
     <h2 style="color: black; text-align: center">${board.boardName} 게시판</h2>
 
     <div class="div-board-list-wrap">
-        <div>
-            <div class="form-group">
-                <label for="exampleSelect1" class="form-label">
-                    <c:choose>
-                        <c:when test="${board.boardName == '일기'}">
-                            기분
-                        </c:when>
-                        <c:otherwise>
-                            말머리
-                        </c:otherwise>
-                    </c:choose>
-                </label>
-                <select class="form-select" id="exampleSelect1">
-                    <c:forEach var="s" items="${subject}">
-                        <option id="option-subject-name" value="${s.subjectName}" data-sel-subject="${s.subjectName}">${s.subjectName}</option>
-                    </c:forEach>
-                </select>
-            </div>
+        <div class="div-board-subject-wrap">
+            <label class="label-subject">
+                <c:choose>
+                    <c:when test="${board.boardName == '일기'}">
+                        기분
+                    </c:when>
+                    <c:otherwise>
+                        말머리
+                    </c:otherwise>
+                </c:choose>
+            </label>
+            <select class="form-select select-subject" id="exampleSelect1">
+                <c:forEach var="s" items="${subject}">
+                    <option id="option-subject-name" value="${s.subjectName}" data-sel-subject="${s.subjectName}">${s.subjectName}</option>
+                </c:forEach>
+            </select>
         </div>
 
         <table class="table table-hover">
@@ -126,7 +124,7 @@
         }
 
         function updateEmoji(element, data) {
-            let emoji = data === 1 ? '😊' : (data === 2 ? '🥹' : '😡');
+            let emoji = data === 1 ? '😊' : (data === 2 ? '😥' : '😡');
             element.text(emoji);
         }
     });

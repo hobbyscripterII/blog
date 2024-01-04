@@ -91,3 +91,19 @@ div.code-toolbar>.toolbar span {
     justify-content: center;
     background-color: lightgray;
 }
+
+.div-board-subject-wrap {
+    display: flex;
+}
+
+.select-subject {
+    height: 100%;
+    width: 150px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.label-subject {
+    display: flex;
+    align-items: center;
+}
