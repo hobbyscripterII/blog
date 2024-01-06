@@ -16,10 +16,13 @@ public class BoardVo {
 
     @Getter
     @Setter
+    @ToString
     public static class Sel {
         private int categoryId;
         private int boardId;
         private int userId;
+        private int subjectId;
+        private String subjectName;
         private String boardCategoryName;
         private String title;
         private String contents;

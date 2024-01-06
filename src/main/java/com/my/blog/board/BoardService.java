@@ -33,7 +33,7 @@ public class BoardService {
     }
 
     public BoardVo.Sel selBoard(int boardId) {
-        return mapper.setBoard(boardId);
+        return mapper.selBoard(boardId);
     }
 
     public int insBoard(BoardInsDto dto) {

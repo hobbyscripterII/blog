@@ -14,7 +14,7 @@ public interface BoardMapper {
     List<BoardVo.Subject> getBoardSubject(int categoryId);
     BoardCategoryDto getBoardCategory(int categoryId);
     List<BoardVo.Get> getBoard(PageNation.Criteria criteria);
-    BoardVo.Sel setBoard(int boardId);
+    BoardVo.Sel selBoard(int boardId);
     int insBoard(BoardInsDto dto);
     int delBoard(int boardId);
     int updBoard(BoardUpdDto dto);

@@ -42,6 +42,7 @@ public class BoardController {
     public String selBoard(@RequestParam(name = "board_id") int boardId, Model model) {
         BoardVo.Sel board = service.selBoard(boardId);
 //        board.setContents(CommonUtil.markdown(board.getContents()));
+        log.info("board = {}", board);
         model.addAttribute("board", board);
         return "/board/read";
     }
@@ -60,16 +61,15 @@ public class BoardController {
     public int insBoard(@RequestParam(name = "category_id") int categoryId, @RequestBody BoardInsDto dto, HttpServletRequest request) {
         dto.setCategoryId(categoryId);
         dto.setUserId(getUserId(request));
-        return 0;
-//        return service.insBoard(dto);
+        return service.insBoard(dto);
     }
 
     @GetMapping("/update")
     public String updBoard(@RequestParam(name = "board_id") int boardId, Model model) {
-        BoardVo.Sel dto = service.selBoard(boardId);
-        BoardCategoryDto board = service.getBoardCategory(dto.getCategoryId());
-        List<BoardVo.Subject> subject = service.getBoardSubject(dto.getCategoryId());
-        model.addAttribute("dto", dto);
+        BoardVo.Sel vo = service.selBoard(boardId);
+        BoardCategoryDto board = service.getBoardCategory(vo.getCategoryId());
+        List<BoardVo.Subject> subject = service.getBoardSubject(vo.getCategoryId());
+        model.addAttribute("vo", vo);
         model.addAttribute("board", board);
         model.addAttribute("subject", subject);
         return "/board/form-we";
@@ -78,6 +78,7 @@ public class BoardController {
     @PostMapping("/update")
     @ResponseBody
     public int updBoard(@RequestBody BoardUpdDto dto) {
+        log.info("dto = {}", dto);
         return service.updBoard(dto);
     }
 

@@ -18,13 +18,15 @@
         LIMIT #{pageStart}, #{amount}
     </select>
 
-    <select id="setBoard">
-        SELECT b.icategory categoryId, a.iboard boardId, c.iuser userId, b.name boardCategoryName, a.title, a.contents, c.unm writer, a.created_at createdAt, a.updated_at updatedAt
+    <select id="selBoard">
+        SELECT b.icategory categoryId, a.iboard boardId, c.iuser userId, d.isubject subjectId, d.name subjectName, b.name boardCategoryName, a.title, a.contents, c.unm writer, a.created_at createdAt, a.updated_at updatedAt
         FROM board a
         INNER JOIN board_category b
         ON a.icategory = b.icategory
         INNER JOIN user c
         ON a.iuser = c.iuser
+        LEFT JOIN board_subject d
+        ON a.isubject = d.isubject
         WHERE a.iboard = #{boardId}
     </select>
 

@@ -28,7 +28,16 @@
                     </th>
                     <th scope="row">
                         <select class="form-select" name="subject" id="subject" style="width: 200px">
-                            <option value="null" label=" "></option>
+                            <c:choose>
+                            <c:when test="${null != vo.subjectId}">
+                            <option value="${vo.subjectId}" label=" ">
+                                    <c:out value="${vo.subjectName}" />
+                                </c:when>
+                                <c:otherwise>
+                            <option value="null" label=" ">
+                                </c:otherwise>
+                                </c:choose>
+                            </option>
                             <c:forEach var="s" items="${subject}">
                                 <option id="subjectName" value="${s.subjectId}" label="${s.subjectName}"></option>
                             </c:forEach>
@@ -39,8 +48,8 @@
                     <th scope="row">제목</th>
                     <th scope="row">
                         <c:choose>
-                            <c:when test="${null != dto}">
-                                <input type="text" class="form-control title" value="${dto.title}" />
+                            <c:when test="${null != vo}">
+                                <input type="text" class="form-control title" value="${vo.title}" />
                             </c:when>
                             <c:otherwise>
                                 <input type="text" class="form-control title" />
@@ -48,21 +57,21 @@
                         </c:choose>
                     </th>
                 </tr>
-                <!-- CKEditor5 -->
+                <!-- CKEditor5 document -->
                 <tr class="table">
                     <th colspan="2" scope="row">
                         <div id="toolbar"></div>
-                        <div id="editor"></div>
-                        <!-- classic -->
-                        <%--                    <textarea class="form-control contents" id="editor" rows="3" style="resize: none">--%>
-                        <%--                        <c:out value="${dto.contents}"/>--%>
-                        <%--                    </textarea>--%>
+                        <div id="editor" data-contents="${vo.contents}"></div>
+                        <!-- CKEditor5 classic & markdown -->
+                        <%--                        <textarea class="form-control contents" id="editor" rows="3" style="resize: none">--%>
+                        <%--                            <c:out value="${vo.contents}"/>--%>
+                        <%--                        </textarea>--%>
                     </th>
                 </tr>
             </table>
             <div class="div-board-write-wrap">
                 <c:choose>
-                    <c:when test="${null != dto}">
+                    <c:when test="${null != vo}">
                         <button type="button" id="btn-board-update" class="btn btn-success">글 수정</button>
                     </c:when>
                     <c:otherwise>
@@ -76,9 +85,10 @@
 </body>
 
 <script>
-    /** CKEditor5 **/
+    /** >>>>> CKEditor5 START **/
     let editorContainer;
 
+    /** document **/
     DecoupledEditor
         .create(document.querySelector('#editor'))
         .then(editor => {
@@ -91,7 +101,7 @@
             console.log(error);
         })
 
-
+    /** classic **/
     // .create(document.querySelector('#editor'), {
     //     language: 'ko'
     // })
@@ -102,35 +112,47 @@
     //     console.error( error );
     // } );
 
-    /** 아래부터 게시글 등록/수정 호출 함수 **/
+    $(document).ready(function () {
+        const contents = $('#editor').data('contents');
+        console.log(contents);
+
+        if (contents != null) {
+            editorContainer.setData(`${vo.contents}`);
+        }
+    });
+    /** >>>>> CKEditor5 END **/
+
+    /** >>>>> 게시글 등록/수정 START **/
     const title = $('.title');
-    const contents = $('.contents');
+    // const contents = editorContainer; // CKEditor5
+    // const contents = $('.contents'); // markdown
     const subjectId = $('#subject');
 
     $('#btn-board-write').click(function() {
         // CKEditor5
-        console.log(editor.getData());
+        console.log(editorContainer.getData());
 
-        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
+        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : editorContainer.getData()};
         const url = '/board/write?category_id=' + `${board.categoryId}`;
         const name = '등록';
         boardAjax(data, url, name);
     });
 
     $('#btn-board-update').click(function () {
-        const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
+        const data = {"boardId": `${vo.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : editorContainer.getData()};
         const url = '/board/update';
         const name = '수정';
+        console.log(data);
         boardAjax(data, url, name);
     });
 
     function boardAjax(data, url, name) {
         if (!data.title) {
             alert('제목을 입력해주세요.');
-            data.title.focus();
+            title.focus();
         } else if(!data.contents) {
             alert('내용을 입력해주세요.');
-            data.contents.focus();
+            contents.focus();
         } else {
             $.ajax({
                 type: 'post',
@@ -148,7 +170,7 @@
                             if (name == '등록') {
                                 location.href = path + data;
                             } else {
-                                location.href = path + `${dto.boardId}`;
+                                location.href = path + `${vo.boardId}`;
                             }
                         } else {
                             alert('게시글 목록 화면으로 이동합니다.');

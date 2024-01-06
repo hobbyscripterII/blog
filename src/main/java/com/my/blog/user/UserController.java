@@ -30,7 +30,6 @@ public class UserController {
     @PostMapping("/sign-up")
     @ResponseBody
     public int signUp(@RequestBody UserSignUpDto dto) {
-        log.info("dto = {}", dto);
         return service.signUp(dto);
     }
 
@@ -50,10 +49,9 @@ public class UserController {
                 session.setAttribute(Const.USER_ID, user.getIuser());
                 session.setAttribute(Const.USER_NAME, user.getUnm());
                 return "redirect:/";
-            } else {
-                br.reject("error", "아이디 혹은 비밀번호를 확인해주세요."); // object error
-                return "/sign-in";
             }
+            br.reject("error", "아이디 혹은 비밀번호를 확인해주세요."); // object error
+            return "/sign-in";
         } catch (Exception e) {
             return "/sign-in";
         }
