@@ -51,9 +51,12 @@
                 <!-- CKEditor5 -->
                 <tr class="table">
                     <th colspan="2" scope="row">
-                    <textarea class="form-control contents" id="editor" rows="3" style="resize: none">
-                        <c:out value="${dto.contents}"/>
-                    </textarea>
+                        <div id="toolbar"></div>
+                        <div id="editor"></div>
+                        <!-- classic -->
+                        <%--                    <textarea class="form-control contents" id="editor" rows="3" style="resize: none">--%>
+                        <%--                        <c:out value="${dto.contents}"/>--%>
+                        <%--                    </textarea>--%>
                     </th>
                 </tr>
             </table>
@@ -74,18 +77,30 @@
 
 <script>
     /** CKEditor5 **/
-    let editor;
+    let editorContainer;
 
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            language: 'ko'
+    DecoupledEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            editorContainer = editor;
+
+            const toolbarContainer = document.querySelector('#toolbar');
+            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
         })
-        .then(newEditor => {
-            editor = newEditor;
-        } )
         .catch(error => {
-            console.error( error );
-        } );
+            console.log(error);
+        })
+
+
+    // .create(document.querySelector('#editor'), {
+    //     language: 'ko'
+    // })
+    // .then(newEditor => {
+    //     editor = newEditor;
+    // } )
+    // .catch(error => {
+    //     console.error( error );
+    // } );
 
     /** 아래부터 게시글 등록/수정 호출 함수 **/
     const title = $('.title');

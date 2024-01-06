@@ -19,5 +19,4 @@
 <%--<script src="/resources/js/prism.js"></script>--%>
 
 <!-- ckeditor -->
-<%--<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/decoupled-document/ckeditor.js"></script>--%>
 <script src="/resources/js/ckeditor.js"></script>
