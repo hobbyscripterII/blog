@@ -7,43 +7,45 @@
 </head>
 
 <body>
-<jsp:include page="../layout/header.jsp"/>
-<jsp:include page="../layout/nav.jsp"/>
-<div class="content">
-    <h2 style="color: black; text-align: center">${board.boardCategoryName} 게시판</h2>
+<div class="content-wrap">
+    <jsp:include page="../layout/header.jsp"/>
+    <jsp:include page="../layout/nav.jsp"/>
+    <div class="content">
+        <h2 style="color: black; text-align: center">${board.boardCategoryName} 게시판</h2>
 
-    <div class="div-board-list-wrap">
-        <table class="table">
-            <tr class="table">
-                <th scope="row">제목</th>
-                <th scope="row"><c:out value="${board.title}" /></th>
-            </tr>
-            <tr class="table">
-                <th scope="row">작성자</th>
-                <th scope="row"><c:out value="${board.writer}" /></th>
-            </tr>
-            <tr class="table">
-                <th scope="row">작성일</th>
-                <th scope="row"><c:out value="${board.createdAt}" /></th>
-            </tr>
-            <tr>
-                <c:if test="${board.updatedAt != null}">
-                <th scope="row">수정일</th>
-                <th scope="row"><c:out value="${board.updatedAt}" /></th>
-            </tr>
-            </c:if>
-            <tr class="table">
-                <th colspan="2" scope="row">
-                    <div id="th-board-contents"></div>
-                </th>
-            </tr>
-        </table>
-        <div>
-            <c:if test="${sessionScope.USER_ID == board.userId}">
-                <button type="button" id="btn-board-del" class="btn btn-danger">삭제</button>
-                <button type="button" id="" class="btn btn-success" onclick="location.href='/board/update?board_id=${board.boardId}'">수정</button>
-            </c:if>
-            <button type="button" class="btn btn-light" onclick="location.href='/board/list?category_id=${board.categoryId}'">목록</button>
+        <div class="div-board-list-wrap">
+            <table class="table">
+                <tr class="table">
+                    <th scope="row">제목</th>
+                    <th scope="row"><c:out value="${board.title}" /></th>
+                </tr>
+                <tr class="table">
+                    <th scope="row">작성자</th>
+                    <th scope="row"><c:out value="${board.writer}" /></th>
+                </tr>
+                <tr class="table">
+                    <th scope="row">작성일</th>
+                    <th scope="row"><c:out value="${board.createdAt}" /></th>
+                </tr>
+                <tr>
+                    <c:if test="${board.updatedAt != null}">
+                    <th scope="row">수정일</th>
+                    <th scope="row"><c:out value="${board.updatedAt}" /></th>
+                </tr>
+                </c:if>
+                <tr class="table">
+                    <th colspan="2" scope="row">
+                        <div id="th-board-contents"></div>
+                    </th>
+                </tr>
+            </table>
+            <div>
+                <c:if test="${sessionScope.USER_ID == board.userId}">
+                    <button type="button" id="btn-board-del" class="btn btn-danger">삭제</button>
+                    <button type="button" id="" class="btn btn-success" onclick="location.href='/board/update?board_id=${board.boardId}'">수정</button>
+                </c:if>
+                <button type="button" class="btn btn-light" onclick="location.href='/board/list?category_id=${board.categoryId}'">목록</button>
+            </div>
         </div>
     </div>
 </div>

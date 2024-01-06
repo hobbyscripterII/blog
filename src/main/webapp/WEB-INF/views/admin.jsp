@@ -7,10 +7,12 @@
 </head>
 
 <body>
-<jsp:include page="layout/header.jsp"/>
-<jsp:include page="layout/nav.jsp"/>
-<div class="content">
+<div class="content-wrap">
+    <jsp:include page="layout/header.jsp"/>
+    <jsp:include page="layout/nav.jsp"/>
+    <div class="content">
 
+    </div>
 </div>
 </body>
 </html>

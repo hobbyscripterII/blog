@@ -7,67 +7,66 @@
 </head>
 
 <body>
-<jsp:include page="../layout/header.jsp"/>
-<jsp:include page="../layout/nav.jsp"/>
-<div class="content">
-    <h2 style="color: black; text-align: center">${board.boardName} 게시판</h2>
+<div class="content-wrap">
+    <jsp:include page="../layout/header.jsp"/>
+    <jsp:include page="../layout/nav.jsp"/>
+    <div class="content">
+        <h2 style="color: black; text-align: center">${board.boardName} 게시판</h2>
 
-    <div class="div-board-list-wrap">
-        <table class="table">
-            <tr>
-                <th scope="row">
-                    <c:choose>
-                        <c:when test="${board.boardName == '일기'}">
-                            기분
-                        </c:when>
-                        <c:otherwise>
-                            말머리
-                        </c:otherwise>
-                    </c:choose>
-                </th>
-                <th scope="row">
-                    <select class="form-select" name="subject" id="subject" style="width: 200px">
-                        <option value="null" label=" "></option>
-                        <c:forEach var="s" items="${subject}">
-                            <option id="subjectName" value="${s.subjectId}" label="${s.subjectName}"></option>
-                        </c:forEach>
-                    </select>
-                </th>
-            </tr>
-            <tr class="table">
-                <th scope="row">제목</th>
-                <th scope="row">
-                    <c:choose>
-                        <c:when test="${null != dto}">
-                            <input type="text" class="form-control title" value="${dto.title}" />
-                        </c:when>
-                        <c:otherwise>
-                            <input type="text" class="form-control title" />
-                        </c:otherwise>
-                    </c:choose>
-                </th>
-            </tr>
-            <!-- CKEditor5 -->
-            <tr class="table">
-                <th colspan="2" scope="row">
-                    <div id="toolbar"></div>
-                    <div id="editor"></div>
-                    <!-- classic -->
-<%--                    <textarea class="form-control contents" id="editor" rows="3" style="resize: none">--%>
-<%--                        <c:out value="${dto.contents}"/>--%>
-<%--                    </textarea>--%>
-                </th>
-            </tr>
-        </table>
-        <div class="div-board-write-wrap">
-            <c:choose>
-                <c:when test="${null != dto}">
-                    <button type="button" id="btn-board-update" class="btn btn-success">글 수정</button>
-                </c:when>
-                <c:otherwise>
-                    <button type="button" id="btn-board-write" class="btn btn-info">글 등록</button>
-                </c:otherwise>
-            </c:choose>
+        <div class="div-board-list-wrap">
+            <table class="table">
+                <tr>
+                    <th scope="row">
+                        <c:choose>
+                            <c:when test="${board.boardName == '일기'}">
+                                기분
+                            </c:when>
+                            <c:otherwise>
+                                말머리
+                            </c:otherwise>
+                        </c:choose>
+                    </th>
+                    <th scope="row">
+                        <select class="form-select" name="subject" id="subject" style="width: 200px">
+                            <option value="null" label=" "></option>
+                            <c:forEach var="s" items="${subject}">
+                                <option id="subjectName" value="${s.subjectId}" label="${s.subjectName}"></option>
+                            </c:forEach>
+                        </select>
+                    </th>
+                </tr>
+                <tr class="table">
+                    <th scope="row">제목</th>
+                    <th scope="row">
+                        <c:choose>
+                            <c:when test="${null != dto}">
+                                <input type="text" class="form-control title" value="${dto.title}" />
+                            </c:when>
+                            <c:otherwise>
+                                <input type="text" class="form-control title" />
+                            </c:otherwise>
+                        </c:choose>
+                    </th>
+                </tr>
+                <!-- CKEditor5 -->
+                <tr class="table">
+                    <th colspan="2" scope="row">
+                    <textarea class="form-control contents" id="editor" rows="3" style="resize: none">
+                        <c:out value="${dto.contents}"/>
+                    </textarea>
+                    </th>
+                </tr>
+            </table>
+            <div class="div-board-write-wrap">
+                <c:choose>
+                    <c:when test="${null != dto}">
+                        <button type="button" id="btn-board-update" class="btn btn-success">글 수정</button>
+                    </c:when>
+                    <c:otherwise>
+                        <button type="button" id="btn-board-write" class="btn btn-info">글 등록</button>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
 </div>
@@ -77,16 +76,16 @@
     /** CKEditor5 **/
     let editor;
 
-    DecoupledEditor
-        .create(document.querySelector('#editor'))
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            language: 'ko'
+        })
         .then(newEditor => {
             editor = newEditor;
-            const toolbar = document.querySelector('#toolbar');
-            toolbar.appendChild(editor.ui.view.toolbar.element);
-        })
+        } )
         .catch(error => {
-            console.error(error);
-        });
+            console.error( error );
+        } );
 
     /** 아래부터 게시글 등록/수정 호출 함수 **/
     const title = $('.title');
@@ -97,18 +96,14 @@
         // CKEditor5
         console.log(editor.getData());
 
-        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : editor.getData()};
-        // const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
+        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
         const url = '/board/write?category_id=' + `${board.categoryId}`;
         const name = '등록';
         boardAjax(data, url, name);
     });
 
     $('#btn-board-update').click(function () {
-        // CKEditor5
-        const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : editor.getData()};
-        // markdown
-        <%--const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};--%>
+        const data = {"boardId": `${dto.boardId}`, "subjectId" : subjectId.val(), "subjectId" : subjectId.val(), "title" : title.val(), "contents" : contents.val()};
         const url = '/board/update';
         const name = '수정';
         boardAjax(data, url, name);
@@ -119,9 +114,8 @@
             alert('제목을 입력해주세요.');
             data.title.focus();
         } else if(!data.contents) {
-            console.log(data.contents);
             alert('내용을 입력해주세요.');
-            // data.contents.focus();
+            data.contents.focus();
         } else {
             $.ajax({
                 type: 'post',

@@ -7,64 +7,66 @@
 </head>
 
 <body>
-<jsp:include page="../layout/header.jsp"/>
-<jsp:include page="../layout/nav.jsp"/>
-<div class="content">
-    <h2 style="color: black; text-align: center">${board.boardName} 게시판</h2>
+<div class="content-wrap">
+    <jsp:include page="../layout/header.jsp"/>
+    <jsp:include page="../layout/nav.jsp"/>
+    <div class="content">
+        <h2 style="color: black; text-align: center">${board.boardName} 게시판</h2>
 
-    <div class="div-board-list-wrap">
-        <table class="table">
-            <tr>
-                <th scope="row">
-                    <c:choose>
-                        <c:when test="${board.boardName == '일기'}">
-                            기분
-                        </c:when>
-                        <c:otherwise>
-                            말머리
-                        </c:otherwise>
-                    </c:choose>
-                </th>
-                <th scope="row">
-                    <select class="form-select" name="subject" id="subject" style="width: 200px">
-                        <option value="null" label=" "></option>
-                        <c:forEach var="s" items="${subject}">
-                            <option id="subjectName" value="${s.subjectId}" label="${s.subjectName}"></option>
-                        </c:forEach>
-                    </select>
-                </th>
-            </tr>
-            <tr class="table">
-                <th rowspan="2" scope="row">제목</th>
-                <th scope="row">
-                    <c:choose>
-                        <c:when test="${null != dto}">
-                            <input type="text" class="form-control title" value="${dto.title}" />
-                        </c:when>
-                        <c:otherwise>
-                            <input type="text" class="form-control title" />
-                        </c:otherwise>
-                    </c:choose>
-                </th>
-            </tr>
-            <tr class="table">
-                <th scope="row" style="display: flex">
+        <div class="div-board-list-wrap">
+            <table class="table">
+                <tr>
+                    <th scope="row">
+                        <c:choose>
+                            <c:when test="${board.boardName == '일기'}">
+                                기분
+                            </c:when>
+                            <c:otherwise>
+                                말머리
+                            </c:otherwise>
+                        </c:choose>
+                    </th>
+                    <th scope="row">
+                        <select class="form-select" name="subject" id="subject" style="width: 200px">
+                            <option value="null" label=" "></option>
+                            <c:forEach var="s" items="${subject}">
+                                <option id="subjectName" value="${s.subjectId}" label="${s.subjectName}"></option>
+                            </c:forEach>
+                        </select>
+                    </th>
+                </tr>
+                <tr class="table">
+                    <th rowspan="2" scope="row">제목</th>
+                    <th scope="row">
+                        <c:choose>
+                            <c:when test="${null != dto}">
+                                <input type="text" class="form-control title" value="${dto.title}" />
+                            </c:when>
+                            <c:otherwise>
+                                <input type="text" class="form-control title" />
+                            </c:otherwise>
+                        </c:choose>
+                    </th>
+                </tr>
+                <tr class="table">
+                    <th scope="row" style="display: flex">
                     <textarea class="form-control contents" id="textarea-board-form" rows="3" style="resize: none">
                         <c:out value="${dto.contents}"/>
                     </textarea>
-                    <div id="div-markdown-contents"></div>
-                </th>
-            </tr>
-        </table>
-        <div class="div-board-write-wrap">
-            <c:choose>
-                <c:when test="${null != dto}">
-                    <button type="button" id="btn-board-update" class="btn btn-success">글 수정</button>
-                </c:when>
-                <c:otherwise>
-                    <button type="button" id="btn-board-write" class="btn btn-info">글 등록</button>
-                </c:otherwise>
-            </c:choose>
+                        <div id="div-markdown-contents"></div>
+                    </th>
+                </tr>
+            </table>
+            <div class="div-board-write-wrap">
+                <c:choose>
+                    <c:when test="${null != dto}">
+                        <button type="button" id="btn-board-update" class="btn btn-success">글 수정</button>
+                    </c:when>
+                    <c:otherwise>
+                        <button type="button" id="btn-board-write" class="btn btn-info">글 등록</button>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
 </div>

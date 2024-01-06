@@ -15,8 +15,8 @@
         <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">기타</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/board/list?category_id=3">관심</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item disabled" href="/sign-up">회원가입</a>
+<%--            <div class="dropdown-divider"></div>--%>
+<%--            <a class="dropdown-item disabled" href="/sign-up">회원가입</a>--%>
         </div>
     </li>
     <li class="li-nav">
@@ -26,7 +26,8 @@
     <c:choose>
         <c:when test="${sessionScope.USER_ID == null}">
             <li class="li-nav">
-                <a class="" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">로그인</a>
+                <a href="/sign-in" class="" style="cursor:pointer">로그인</a>
+<%--                <a class="" data-bs-toggle="modal" data-bs-target="#modal-login" style="cursor:pointer">로그인</a>--%>
             </li>
         </c:when>
         <c:otherwise>

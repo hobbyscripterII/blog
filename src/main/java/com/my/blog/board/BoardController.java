@@ -58,8 +58,6 @@ public class BoardController {
     @PostMapping("/write")
     @ResponseBody
     public int insBoard(@RequestParam(name = "category_id") int categoryId, @RequestBody BoardInsDto dto, HttpServletRequest request) {
-        log.info("contents = {}", dto.getContents());
-
         dto.setCategoryId(categoryId);
         dto.setUserId(getUserId(request));
         return 0;
