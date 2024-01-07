@@ -10,4 +10,5 @@ import lombok.ToString;
 public class UserSignInDto {
     private String uid;
     private String upw;
+    private boolean uidSaveFl;
 }

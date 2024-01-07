@@ -20,12 +20,15 @@
                 <div class="form-group">
                     <label class="form-label mt-2">아이디</label>
                     <form:input type="text" class="form-control" name="uid" path="uid" placeholder="아이디를 입력하세요." autocomplete="off" /> <!-- autocomplete="off": 자동 완성 기능 off -->
+                    <div class="form-group" style="margin-top: 3px">
+                        <input type="checkbox" class="form-check-input" name="uidSaveFl" id="uidSaveFl" style="margin: 3px 3px 0">아이디 저장
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">비밀번호</label>
                     <form:input type="password" class="form-control" name="upw" path="upw" placeholder="비밀번호를 입력하세요." autocomplete="off" />
                 </div>
-                <input type="button" class="btn btn btn-success mt-4" value="로그인" id="btn-sign-up" style="width: 100%">
+                <input type="button" class="btn btn btn-warning mt-4" value="로그인" id="btn-sign-up" style="width: 100%">
             </form:form>
         </div>
     </div>
@@ -33,6 +36,15 @@
 </body>
 
 <script>
+    $(document).ready(function () {
+        const uid = `${uid}`;
+
+        if(uid != '0') {
+            $('input[name=uid]').val(uid);
+            $('#uidSaveFl').prop('checked', true);
+        }
+    });
+
     $('#btn-sign-up').click(function () {
         let uid = $('input[name=uid]');
         let upw = $('input[name=upw]');
