@@ -89,17 +89,15 @@
     let editorContainer;
 
     /** document **/
-    DecoupledEditor
-        .create(document.querySelector('#editor'))
-        .then(editor => {
+    DecoupledEditor.create(document.querySelector('#editor'), {
+            language: 'ko'
+        }).then(editor => {
             editorContainer = editor;
-
             const toolbarContainer = document.querySelector('#toolbar');
             toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-        })
-        .catch(error => {
+        }).catch(error => {
             console.log(error);
-        })
+        });
 
     /** classic **/
     // .create(document.querySelector('#editor'), {

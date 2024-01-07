@@ -97,10 +97,10 @@
             </c:if>
 
             <div style="display: flex; justify-content: center">
-                <form class="d-flex" action="" style="width: 400px; margin-left: 90px">
-                    <input class="form-control me-sm-2" id="input-search" type="search" placeholder="검색어를 입력하세요.">
+                <div class="d-flex" style="width: 400px; margin-left: 90px">
+                    <input class="form-control me-sm-2" id="input-search" type="search" onkeyup="search()" placeholder="검색어를 입력하세요.">
                     <button class="btn btn-secondary my-2 my-sm-0" id="btn-search" type="button">Search</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
         const boardName = '${board.boardName}';
 
         if(boardName === '일기') {
-            // $('[element=name]'): 해당 id를 가진 모든 엘리먼트를 선택한다.
+            // $('[element=name]') - 해당 id를 가진 모든 엘리먼트를 선택한다.
             const subjectNames = $('[id=subjectName]');
             const optionSubjectNames = $('[id=option-subject-name]');
 
@@ -131,16 +131,11 @@
         }
     });
 
-    $('#btn-search').click(function () {
-        const search = $('#input-search').val();
-        location.href = '/board/list?category_id=${board.categoryId}&keyword=' + search;
-    });
-
-    // $('#input-search').keypress(function (e) {
-    //     if(e.keyCode === 13) {
-    //         const search = $('#input-search').val();
-    //         alert(search);
-    //     }
-    // });
+    function search() {
+        if(window.event.keyCode == 13) {
+            const search = $('#input-search').val();
+            location.href = '/board/list?category_id=${board.categoryId}&keyword=' + search;
+        }
+    }
 </script>
 </html>

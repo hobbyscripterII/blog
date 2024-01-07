@@ -28,7 +28,7 @@
                     <label class="form-label mt-4">비밀번호</label>
                     <form:input type="password" class="form-control" name="upw" path="upw" placeholder="비밀번호를 입력하세요." autocomplete="off" />
                 </div>
-                <input type="button" class="btn btn btn-warning mt-4" value="로그인" id="btn-sign-up" style="width: 100%">
+                <input type="button" class="btn btn btn-info mt-4" value="로그인" id="btn-sign-up" style="width: 100%">
             </form:form>
         </div>
     </div>

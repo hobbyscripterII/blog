@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'InkLipquid';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .navbar {
     position: sticky;
     top: 0;
@@ -10,8 +17,8 @@ nav {
     position: relative;
     display: block;
     height: 100%;
-    width: 12vw;
-    background-color: #D4C7B0;
+    width: 11vw;
+    background-color: #0047AB;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
 }
@@ -22,8 +29,10 @@ nav {
 }
 
 .li-nav > a {
-    color: black;
+    font-family: 'InkLipquid';
+    color: white;
     text-decoration: none;
+    font-size: 24px;
 }
 
 .li-nav > a:hover {
@@ -32,7 +41,7 @@ nav {
 }
 
 #a-title {
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .d-flex {

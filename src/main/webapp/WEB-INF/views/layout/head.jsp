@@ -20,3 +20,4 @@
 
 <!-- ckeditor -->
 <script src="/resources/js/ckeditor.js"></script>
+<script src="/resources/js/ko.js"></script>
