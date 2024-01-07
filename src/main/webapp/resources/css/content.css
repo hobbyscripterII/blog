@@ -133,6 +133,10 @@ div.code-toolbar>.toolbar span {
     height: 300px;
 }
 
+.ck-editor__editable p {
+    margin: -10px;
+}
+
 .div-error-msg {
     width: 100%;
     height: 40px;

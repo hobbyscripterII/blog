@@ -24,6 +24,11 @@ import java.util.List;
 public class BoardController {
     private final BoardService service;
 
+    @PostMapping("/ckeditor/image-upload")
+    public String imageUpload() {
+        return null;
+    }
+
     @GetMapping("/list")
     public String getBoardList(PageNation.Criteria criteria, @RequestParam(name = "category_id", required = false) int categoryId, @RequestParam(name = "keyword", required = false) String keyword, Model model) {
         criteria.setCategoryId(categoryId);

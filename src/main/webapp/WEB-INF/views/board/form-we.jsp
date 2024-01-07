@@ -85,21 +85,30 @@
 </body>
 
 <script>
-    /** >>>>> CKEditor5 START **/
+    /** >>>>> ckeditor START **/
     let editorContainer;
 
-    /** document **/
+    /** document editor **/
     DecoupledEditor.create(document.querySelector('#editor'), {
-            language: 'ko'
-        }).then(editor => {
-            editorContainer = editor;
-            const toolbarContainer = document.querySelector('#toolbar');
-            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-        }).catch(error => {
-            console.log(error);
-        });
+        language: 'ko'
+    }).then(editor => {
+        editorContainer = editor;
+        const toolbarContainer = document.querySelector('#toolbar');
+        toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+    }).catch(error => {
+        console.log(error);
+    });
 
-    /** classic **/
+    $(document).ready(function () {
+        const contents = $('#editor').data('contents');
+        console.log(contents);
+
+        if (contents != null) {
+            editorContainer.setData(contents);
+        }
+    });
+
+    /** classic editor **/
     // .create(document.querySelector('#editor'), {
     //     language: 'ko'
     // })
@@ -109,16 +118,6 @@
     // .catch(error => {
     //     console.error( error );
     // } );
-
-    $(document).ready(function () {
-        const contents = $('#editor').data('contents');
-        console.log(contents);
-
-        if (contents != null) {
-            editorContainer.setData(`${vo.contents}`);
-        }
-    });
-    /** >>>>> CKEditor5 END **/
 
     /** >>>>> 게시글 등록/수정 START **/
     const title = $('.title');

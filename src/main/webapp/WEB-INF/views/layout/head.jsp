@@ -21,3 +21,5 @@
 <!-- ckeditor -->
 <script src="/resources/js/ckeditor.js"></script>
 <script src="/resources/js/ko.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ckeditor5-upload-adapter@1.0.3/src/uploadadapter.min.js"></script>
+<script src="/resources/js/ckeditor-uploadadapter.js"></script>
