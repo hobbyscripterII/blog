@@ -60,12 +60,9 @@
                 <!-- CKEditor5 document -->
                 <tr class="table">
                     <th colspan="2" scope="row">
-                        <div id="toolbar"></div>
-                        <div id="editor" data-contents="${vo.contents}"></div>
-                        <!-- CKEditor5 classic & markdown -->
-                        <%--                        <textarea class="form-control contents" id="editor" rows="3" style="resize: none">--%>
-                        <%--                            <c:out value="${vo.contents}"/>--%>
-                        <%--                        </textarea>--%>
+                        <textarea class="form-control contents" id="editor" data-contents="${vo.contents}" rows="3" style="resize: none">
+                            <c:out value="${vo.contents}"/>
+                        </textarea>
                     </th>
                 </tr>
             </table>
@@ -86,38 +83,30 @@
 
 <script>
     /** >>>>> ckeditor START **/
-    let editorContainer;
+    let editor;
 
-    /** document editor **/
-    DecoupledEditor.create(document.querySelector('#editor'), {
-        language: 'ko'
-    }).then(editor => {
-        editorContainer = editor;
-        const toolbarContainer = document.querySelector('#toolbar');
-        toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-    }).catch(error => {
-        console.log(error);
-    });
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            ckfinder: {
+                uploadUrl: '/board/image-upload'
+            }
+        })
+        .then(e => {
+            editor = e;
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
     $(document).ready(function () {
         const contents = $('#editor').data('contents');
         console.log(contents);
 
         if (contents != null) {
-            editorContainer.setData(contents);
+            editor.setData(contents);
         }
     });
-
-    /** classic editor **/
-    // .create(document.querySelector('#editor'), {
-    //     language: 'ko'
-    // })
-    // .then(newEditor => {
-    //     editor = newEditor;
-    // } )
-    // .catch(error => {
-    //     console.error( error );
-    // } );
+    /** >>>>> ckeditor END **/
 
     /** >>>>> 게시글 등록/수정 START **/
     const title = $('.title');
@@ -126,17 +115,14 @@
     const subjectId = $('#subject');
 
     $('#btn-board-write').click(function() {
-        // CKEditor5
-        console.log(editorContainer.getData());
-
-        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : editorContainer.getData()};
+        const data = {"subjectId" : subjectId.val(), "title" : title.val(), "contents" : editor.getData()};
         const url = '/board/write?category_id=' + `${board.categoryId}`;
         const name = '등록';
         boardAjax(data, url, name);
     });
 
     $('#btn-board-update').click(function () {
-        const data = {"boardId": `${vo.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : editorContainer.getData()};
+        const data = {"boardId": `${vo.boardId}`, "subjectId" : subjectId.val(), "title" : title.val(), "contents" : editor.getData()};
         const url = '/board/update';
         const name = '수정';
         console.log(data);

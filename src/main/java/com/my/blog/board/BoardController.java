@@ -12,10 +12,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -24,9 +30,21 @@ import java.util.List;
 public class BoardController {
     private final BoardService service;
 
-    @PostMapping("/ckeditor/image-upload")
-    public String imageUpload() {
-        return null;
+    @PostMapping("/image-upload")
+    public ModelAndView image(MultipartHttpServletRequest request, ServletConfig servletConfig) throws Exception {
+        ModelAndView mv = new ModelAndView("jsonView");
+        MultipartFile uploadFile = request.getFile("upload");
+        String originalFileName = uploadFile.getOriginalFilename();
+        String ext = originalFileName.substring(originalFileName.indexOf("."));
+        String newFileName = UUID.randomUUID() + ext;
+        String realPath = servletConfig.getServletContext().getRealPath("/");
+        String savePath = realPath + "upload/" + newFileName;
+        String uploadPath = "./upload/" + newFileName;
+        File file = new File(savePath);
+        uploadFile.transferTo(file);
+        mv.addObject("uploaded", true);
+        mv.addObject("url", uploadPath);
+        return mv;
     }
 
     @GetMapping("/list")
