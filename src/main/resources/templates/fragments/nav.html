@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="nav">
+  <nav>
+    <button class="menu-toggle" onclick="toggleMenu()">☰ 메뉴</button>
+    
+    <ul id="main-menu">
+        <li><a th:href="@{/}">홈</a></li>
+        <li>
+            <a href="#" onclick="toggleSubmenu(event, this)">게시판</a>
+            <ul>
+                <li><a th:href="@{/book}">책갈피</a></li>
+                <li><a href="#">음악</a></li>
+                <li><a href="#">사진</a></li>
+                <li><a href="#">일상</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="toggleSubmenu(event, this)">프로젝트</a>
+            <ul>
+                <li><a href="#">블로그</a></li>
+                <li><a href="#">가계부</a></li>
+                <li><a href="#">아두이노</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" onclick="toggleSubmenu(event, this)">공부</a>
+            <ul>
+                <li><a href="#">Spring</a></li>
+                <li><a href="#">Network</a></li>
+                <li><a href="#">ETC</a></li>
+            </ul>
+        </li>
+        <li><a th:href="@{/login}">로그인</a></li>
+    </ul>
+</nav>
+
+<!--
+  <th:block sec:authorize="isAnonymous()">
+    <a th:href="@{/login}" class="nav-mini-item" title="로그인">
+      <span class="nav-mini-icon">🔑</span>
+    </a>
+  </th:block>
+
+  <th:block sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}" class="nav-mini-item" title="로그아웃">
+      <span class="nav-mini-icon">🚪</span>
+    </a>
+  </th:block>
+-->
+</html>
