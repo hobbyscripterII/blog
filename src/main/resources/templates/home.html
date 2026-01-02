@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{fragments/layout}" layout:fragment="section">
+  <section>
+    <div class="hero-section">
+        <h1>이주영 블로그</h1>
+        <p>공사 중</p>
+    </div>
+
+    <div class="intro-section">
+        <div class="section-header">
+            <h2>About Me</h2>
+            <p>간단한 자기소개</p>
+        </div>
+        <div class="intro-content">
+            <div class="intro-text">
+                <h3>블로그 공사 중</h3>
+                <p>공사 중..
+                </p>
+                <!--
+                <div class="tech-stack">
+                    <span class="tech-item"></span>
+                </div>
+                -->
+            </div>
+            <img class="intro-image" src="https://i.pinimg.com/736x/65/c3/d9/65c3d95aadd7053f722ccae0b09e9e39.jpg">
+        </div>
+    </div>
+
+    <div class="github-section">
+        <div class="section-header">
+            <h2>Github Commit</h2>
+            <p>커밋 활동</p>
+        </div>
+        <div class="github-grass">
+            <img src="https://ghchart.rshah.org/2c3e50/hobbyscripterII" alt="github contributions" />
+            <a href="https://github.com/hobbyscripterII" class="github-link" target="_blank">
+                GitHub 프로필 보기 →
+            </a>
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <div class="section-header">
+            <h2>Activity</h2>
+            <p>블로그 활동</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card" onclick="link('book')">
+                <div class="stat-number" th:text="${VO.bookCnt}">0</div>
+                <div class="stat-label">책갈피</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">음악</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">사진</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">일상</div>
+            </div>
+            <!--
+            <div class="stat-card">
+                <div class="stat-number" th:text="${VO.musicCnt}">0</div>
+                <div class="stat-label">음악</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" th:text="${VO.photoCnt}">0</div>
+                <div class="stat-label">사진</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" th:text="${VO.dailyCnt}">0</div>
+                <div class="stat-label">일상</div>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <div class="posts-section">
+        <div class="section-header">
+            <h2>Latest Posts</h2>
+            <p>최근에 작성한 글들</p>
+        </div>
+        <ul class="post-list">
+            <li class="post-item">
+                <div class="post-title">테스트</div>
+                <div class="post-meta">작성일자 | 조회수</div>
+            </li>
+        </ul>
+    </div>
+
+    <!--
+    <div class="contact-section">
+        <h3>Contact</h3>
+        <div class="contact-links">
+            <a href="mailto:your@email.com" class="contact-link">
+                <span class="contact-icon">✉️</span>
+                <span>Email</span>
+            </a>
+            <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+                <span class="contact-icon">💻</span>
+                <span>GitHub</span>
+            </a>
+            <a href="#" class="contact-link">
+                <span class="contact-icon">📝</span>
+                <span>Blog</span>
+            </a>
+        </div>
+    </div>
+    -->
+</section>
+<script>
+  function link(str) {
+    if(str == 'book') {
+      location.href = '/book';
+    }
+  }
+</script>
+</html>

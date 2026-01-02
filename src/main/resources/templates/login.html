@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{fragments/layout}" layout:fragment="section">
+<style>section {display: flex;align-items: center;justify-content: center;}</style>
+<section>
+  <div class="login-box">
+      <h1>로그인</h1>
+      <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
+          <div class="form-group">
+              <label for="username">아이디</label>
+              <input type="text" id="username" name="username" autocomplete="username">
+          </div>
+          <div class="form-group">
+              <label for="password">비밀번호</label>
+              <input type="password" id="password" name="password" autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn-login">로그인</button>
+      </form>
+  </div>
+</section>
+<script>
+  function handleLogin(event) {
+      event.preventDefault();
+      
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+
+      // 입력값 초기화
+      username.classList.remove('error');
+      password.classList.remove('error');
+
+      // 유효성 검사
+      if (!username.value.trim()) {
+          username.classList.add('error');
+          alertModalOpen('아이디를 입력하세요.');
+          username.focus();
+          
+          return false;
+      }
+
+      if (!password.value.trim()) {
+          password.classList.add('error');
+          alertModalOpen('비밀번호를 입력하세요.');
+          password.focus();
+          
+          return false;
+      }
+
+      if (username.value === 'admin' && password.value === 'admin') {
+          setTimeout(() => {
+              window.location.href = '/';
+          }, 1000);
+      } else {
+          alertModalOpen('아이디 또는 비밀번호가 올바르지 않습니다.');
+      }
+
+      return false;
+  }
+
+  // 입력 시 에러 스타일 제거
+  document.getElementById('username').addEventListener('input', function() {
+      this.classList.remove('error');
+  });
+
+  document.getElementById('password').addEventListener('input', function() {
+      this.classList.remove('error');
+  });
+</script>
+</html>

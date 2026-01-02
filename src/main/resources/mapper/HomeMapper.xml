@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.blog.home.HomeMapper">
+  <select id="getContentsCnt" resultType="ContentsCntGetVo">
+    SELECT
+      (SELECT COUNT(IHIGHLIGHT)
+       FROM TBL_HIGHLIGHT
+       WHERE DEL_YN = 'N') AS BOOK_CNT,
+      (SELECT COUNT(*)
+       FROM TBL_BOARD
+       WHERE ICODE = 'B003'
+        AND SEC_YN = 'N' AND DEL_YN = 'N') AS PHOTO_CNT,
+      (SELECT COUNT(*)
+       FROM TBL_BOARD
+       WHERE ICODE = 'B004'
+        AND SEC_YN = 'N' AND DEL_YN = 'N') AS MUSIC_CNT,
+      (SELECT COUNT(*)
+       FROM TBL_BOARD
+       WHERE ICODE = 'B005'
+        AND SEC_YN = 'N' AND DEL_YN = 'N') AS DAILY_CNT
+  </select>
+</mapper>

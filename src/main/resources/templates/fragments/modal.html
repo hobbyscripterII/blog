@@ -1,17 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="modal">
-  <div id="alertModal" class="modal" onclick="closeModal(event)">
+  <div id="alertModal" class="modal" onclick="alertModalClose(event)">
       <div class="modal-content" onclick="event.stopPropagation()">
           <div class="modal-header">
               <h2>알림</h2>
-              <button class="modal-close" onclick="closeModal()">&times;</button>
+              <button class="modal-close" onclick="alertModalClose()">&times;</button>
           </div>
           <div class="modal-body">
               <div class="modal-message" id="modalMessage">메시지</div>
           </div>
           <div class="modal-footer">
-              <button class="modal-btn" onclick="closeModal()">확인</button>
+              <button class="modal-btn" onclick="alertModalClose()">확인</button>
           </div>
       </div>
+  </div>
+  
+  <div id="quote-modal" class="modal" onclick="bookModalClose(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <button class="modal-close" onclick="bookModalClose()">&times;</button>
+            <div class="modal-book-info">
+                <div class="modal-book-title" id="modal-book-title"></div>
+                <div class="modal-book-author" id="modal-book-author"></div>
+                <!--
+                <div class="modal-book-page" id="modal-book-page"></div>
+                -->
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-quote-icon">"</div>
+            <div class="modal-quote-text" id="modal-quote-text">
+            </div>
+            <div class="modal-divider"></div>
+            
+            <!--
+            <div class="modal-note" id="modalNote">
+                <div class="modal-note-title">나의 메모</div>
+                <div class="modal-note-text" id="modal-note-text">
+                </div>
+            </div>
+            -->
+        </div>
+        <div class="modal-footer">
+            <div class="modal-date" id="modal-date"></div>
+        </div>
+    </div>
   </div>
 </html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.blog.book.BookMapper">
+  <select id="getBook" parameterType="BookGetDto" resultType="BookGetVo">
+    SELECT
+      H.IHIGHLIGHT,
+      B.TITLE,
+      B.AUTHOR,
+      B.PUBLISHER,
+      H.HIGHLIGHT,
+      DATE(H.CREATED_AT) AS CREATED_AT
+    FROM TBL_HIGHLIGHT H
+    INNER JOIN TBL_BOOK B
+    ON H.IBOOK = B.IBOOK
+    <where>
+      H.DEL_YN = 'N'
+      <if test="search != null and search != ''">
+        AND (
+               B.TITLE  LIKE CONCAT('%', #{search}, '%')
+            OR B.AUTHOR LIKE CONCAT('%', #{search}, '%')
+          )
+      </if>
+    </where>
+    ORDER BY H.CREATED_AT DESC
+    LIMIT #{offset}, #{amount}
+  </select>
+  
+  <select id="selBook" parameterType="BookSelDto" resultType="BookSelVo">
+    SELECT
+      H.IHIGHLIGHT,
+      B.TITLE,
+      B.AUTHOR,
+      B.PUBLISHER,
+      H.HIGHLIGHT,
+      DATE(H.CREATED_AT) AS CREATED_AT
+    FROM TBL_HIGHLIGHT H
+    INNER JOIN TBL_BOOK B
+    ON H.IBOOK = B.IBOOK
+    WHERE H.IHIGHLIGHT = #{ihighlight}
+  </select>
+  
+  <select id="getBookCnt" parameterType="BookGetDto" resultType="int">
+    SELECT COUNT(*) AS CNT
+    FROM TBL_HIGHLIGHT H
+    INNER JOIN TBL_BOOK B
+    ON H.IBOOK = B.IBOOK
+    <where>
+      H.DEL_YN = 'N'
+      <if test="search != null and search != ''">
+        AND (
+               B.TITLE  LIKE CONCAT('%', #{search}, '%')
+            OR B.AUTHOR LIKE CONCAT('%', #{search}, '%')
+          )
+      </if>
+    </where>
+  </select>
+</mapper>

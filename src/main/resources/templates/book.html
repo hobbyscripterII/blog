@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorate="~{fragments/layout}" layout:fragment="section">
+<style>.modal {display: none;position: fixed;z-index: 2000;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.7);animation: fadeIn 0.3s;}.modal.show {display: flex;align-items: center;justify-content: center;}@keyframes fadeIn {from { opacity: 0; }to { opacity: 1; }}.modal-content {background-color: #fff;margin: 20px;max-width: 700px;width: 100%;max-height: 90vh;overflow-y: auto;position: relative;animation: slideUp 0.3s;box-shadow: 0 10px 40px rgba(0,0,0,0.3);}@keyframes slideUp {from {transform: translateY(50px);opacity: 0;}to {transform: translateY(0);opacity: 1;}}.modal-header {background-color: #2c3e50;color: #fff;padding: 30px 70px 30px 30px;position: relative;}.modal-close {position: absolute;top: 15px;right: 15px;font-size: 28px;font-weight: 300;color: #fff;cursor: pointer;background: none;border: none;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center;transition: all 0.3s;flex-shrink: 0;}.modal-close:hover {background-color: rgba(255,255,255,0.1);transform: rotate(90deg);}.modal-book-info {display: flex;flex-direction: column;gap: 8px;}.modal-book-title {font-size: 24px;font-weight: 600;margin-bottom: 5px;word-wrap: break-word;line-height: 1.3;}.modal-book-author {font-size: 16px;opacity: 0.9;}.modal-book-page {font-size: 14px;opacity: 0.8;margin-top: 10px;}.modal-body {padding: 40px;}.modal-quote-icon {color: #e0e0e0;font-size: 64px;line-height: 1;margin-bottom: 20px;}.modal-quote-text {font-size: 20px;line-height: 1.9;color: #2c3e50;font-style: italic;margin-bottom: 30px;text-align: justify;}.modal-divider {height: 2px;background: linear-gradient(to right, #2c3e50, transparent);margin: 30px 0;}.modal-footer {padding: 0 40px 40px;}.modal-date {color: #7f8c8d;font-size: 14px;text-align: right;}.modal-note {background-color: #f8f9fa;padding: 20px;margin-top: 20px;border-left: 3px solid #2c3e50;}.modal-note-title {font-weight: 600;color: #2c3e50;margin-bottom: 10px;}.modal-note-text {color: #555;font-size: 15px;line-height: 1.7;}</style> 
+<section>
+  <div class="page-header">
+    <h1>책갈피</h1>
+    <p>감명깊게 읽은 구절들을 기록합니다.</p>
+  </div>
+
+  <div class="filter-section">
+      <select style="display: none">
+          <option value="all">전체</option>
+          <option value="novel">소설</option>
+          <option value="essay">에세이</option>
+          <option value="tech">기술서</option>
+          <option value="business">비즈니스</option>
+      </select>
+      <input type="text" id="search" placeholder="책 제목이나 저자를 입력하세요.">
+      <button class="btn btn-primary" onclick="search()">검색</button>
+  </div>
+
+  <div class="quote-grid">
+    <th:block th:if="${VO != null and !#lists.isEmpty(VO)}" th:each="v : ${VO}">
+      <div class="quote-card" th:data-highlight="${v.ihighlight}" onclick="bookModalOpen(this.dataset.highlight)">
+          <!--
+          <div class="page-number">p.0</div>
+          -->
+          <div class="quote-icon">"</div>
+          <div class="quote-text" th:text="${v.highlight}">내용</div>
+          <div class="quote-divider"></div>
+          <div class="quote-meta">
+              <div class="book-title" th:text="${v.title}">책 제목</div>
+              <div class="book-author" th:text="${v.author}">지은이</div>
+              <div class="quote-date" th:text="${v.createdAt}">작성일자</div>
+          </div>
+      </div>
+    </th:block>
+  </div>
+  
+  <th:block th:replace="~{fragments/pagination :: pagination}"></th:block>
+</section>
+<script>
+  function search() {
+    let search = $('#search').val().trim();
+    
+    if(!search) {
+      alertModalOpen('검색어를 입력해주세요.');
+      search.text('');
+    } else {
+      
+    }
+  }
+  
+  function bookModalOpen(ihighlight) {
+    ihighlight = ihighlight || 0;
+    
+    $.ajax({
+        type : 'GET',
+        url : `/book/${ihighlight}`,
+        dataType : 'json',
+        contentType : 'application/json',
+        success : (result) => {
+          let status = result.status;
+          
+          if(status == '200') {
+            let data = result.data;
+            let $modal = $('#quote-modal');
+
+            if (data) {
+              let $modalBookTitle = $('#modal-book-title');
+              let $modalBookAuthor = $('#modal-book-author');
+              let $modalQuoteText = $('#modal-quote-text');
+              let $modalDate = $('#modal-date');
+              
+              let title = data.title;
+              let author = data.author;
+              let highlight = data.highlight;
+              let createdAt = data.createdAt;
+              
+              $modalBookTitle.html(title);
+              $modalBookAuthor.html(author);
+              $modalQuoteText.html(highlight);
+              $modalDate.html(createdAt);
+              
+              $modal.addClass('show');
+              document.body.style.overflow = 'hidden';
+            }
+          } else {
+            let errors = result.errors;
+            let message = result.message;
+            let text = errors || message;
+            
+            alertModalOpen(text);
+          }
+        },
+        error: (x) => {
+          console.log(x);
+      }
+    });
+  }
+
+  function bookModalClose(event) {
+      let $modal = $('#quote-modal');
+      
+      $modal.removeClass('show');
+      document.body.style.overflow = 'auto';
+  }
+
+  document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+          closeModal();
+      }
+  });
+</script>
+</html>
