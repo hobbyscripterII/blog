@@ -13,11 +13,13 @@ public class Pagination {
 	private int amount = 10; // 한 페이지당 보여 줄 게시글 개수
 	private int total;       // 총 게시글 개수
 	private int pageCnt = 5; // 페이지네이션 개수
+	private String category; // 책갈피/게시판 분류 코드
 
-	public Pagination(int page, int total) {
+	public Pagination(int page, int total, String category) {
 		this.page   = page < 0 ? 1 : page;
 		// this.amount = amount;
 		this.total  = total;
+		this.category = category;
 
 		// 1. 끝 페이지 계산: (int) Math.ceil(페이지 번호 / 페이지네이션 개수) * 페이지네이션 버튼 개수
 		// (1) 1 / 5 = 0.2

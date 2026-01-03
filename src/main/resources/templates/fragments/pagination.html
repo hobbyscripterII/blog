@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="pagination">
-<div class="pagination">
-  <a th:if="${1<PAGINATION.start}" th:href="@{/book(page = 1, search = ${param.search})}">&laquo;</a>
-  <a th:if="${1<PAGINATION.start}" th:href="@{/book(page = ${PAGINATION.start - 1}, search = ${param.search})}">&lt;</a>
-  
-  <th:block th:if="${PAGINATION.realEnd > 0}" th:each="page, i : ${#numbers.sequence(PAGINATION.start,PAGINATION.end)}">
-    <a class="active" th:if="${i.current == PAGINATION.page}" th:href="@{/book(page = ${i.current}, search = ${param.search})}" th:text="${i.current}"></a>  
-    <a th:if="${i.current != PAGINATION.page}" th:href="@{/book(page = ${i.current}, search = ${param.search})}" th:text="${i.current}"></a>  
-  </th:block>
-  
-  <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/book(page = 1, search = ${param.search})}">&gt;</a>
-  <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/book(page = ${PAGINATION.start - 1}, search = ${param.search})}">&raquo;</a>
-</div>
+<th:block th:if="${PAGINATION.category eq 'book'}">
+  <div class="pagination">
+    <a th:if="${1<PAGINATION.start}" th:href="@{/book(page = 1, search = ${param.search})}">&laquo;</a>
+    <a th:if="${1<PAGINATION.start}" th:href="@{/book(page = ${PAGINATION.start - 1}, search = ${param.search})}">&lt;</a>
+    
+    <th:block th:if="${PAGINATION.realEnd > 0}" th:each="page, i : ${#numbers.sequence(PAGINATION.start,PAGINATION.end)}">
+      <a class="active" th:if="${i.current == PAGINATION.page}" th:href="@{/book(page = ${i.current}, search = ${param.search})}" th:text="${i.current}"></a>  
+      <a th:if="${i.current != PAGINATION.page}" th:href="@{/book(page = ${i.current}, search = ${param.search})}" th:text="${i.current}"></a>  
+    </th:block>
+    
+    <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/book(page = 1, search = ${param.search})}">&gt;</a>
+    <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/book(page = ${PAGINATION.start - 1}, search = ${param.search})}">&raquo;</a>
+  </div>
+</th:block>
+
+<th:block th:if="${PAGINATION.category eq 'music' || PAGINATION.category eq 'photo' || PAGINATION.category eq 'daily'}">
+  <div class="pagination">
+    <a th:if="${1<PAGINATION.start}" th:href="@{/board/{category}(category = ${CATEGORY}, page = 1, search = ${param.search})}">&laquo;</a>
+    <a th:if="${1<PAGINATION.start}" th:href="@{/board/{category}(category = ${CATEGORY}, page = ${PAGINATION.start - 1}, search = ${param.search})}">&lt;</a>
+    
+    <th:block th:if="${PAGINATION.realEnd > 0}" th:each="page, i : ${#numbers.sequence(PAGINATION.start,PAGINATION.end)}">
+      <a class="active" th:if="${i.current == PAGINATION.page}" th:href="@{/board/{category}(category = ${CATEGORY}, page = ${i.current}, search = ${param.search})}" th:text="${i.current}"></a>  
+      <a th:if="${i.current != PAGINATION.page}" th:href="@{/board/{category}(category = ${CATEGORY}, page = ${i.current}, search = ${param.search})}" th:text="${i.current}"></a>  
+    </th:block>
+    
+    <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/board/{category}(category = ${CATEGORY}, page = 1, search = ${param.search})}">&gt;</a>
+    <a th:if="${PAGINATION.end<PAGINATION.realEnd}" th:href="@{/board/{category}(category = ${CATEGORY}, page = ${PAGINATION.start - 1}, search = ${param.search})}">&raquo;</a>
+  </div>
+</th:block>
 </html>

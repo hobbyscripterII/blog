@@ -34,8 +34,9 @@ public class BookController {
 		bookGetDto.setSearch(search);
 		
 		int cnt = service.getBookCnt(bookGetDto);
+		String category = "book";
 		
-		Pagination pagination = new Pagination(page, cnt);
+		Pagination pagination = new Pagination(page, cnt, category);
 		
 		model.addAttribute(VO, service.getBook(bookGetDto));
 		model.addAttribute(PAGINATION, pagination);

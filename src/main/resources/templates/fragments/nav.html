@@ -9,9 +9,9 @@
             <a href="#" onclick="toggleSubmenu(event, this)">게시판</a>
             <ul>
                 <li><a th:href="@{/book}">책갈피</a></li>
-                <li><a href="#">음악</a></li>
-                <li><a href="#">사진</a></li>
-                <li><a href="#">일상</a></li>
+                <li><a th:href="@{/board/music}">음악</a></li>
+                <li><a th:href="@{/board/photo}">사진</a></li>
+                <li><a th:href="@{/board/daily}">일상</a></li>
             </ul>
         </li>
         <li>
@@ -25,9 +25,9 @@
         <li>
             <a href="#" onclick="toggleSubmenu(event, this)">공부</a>
             <ul>
-                <li><a href="#">Spring</a></li>
-                <li><a href="#">Network</a></li>
-                <li><a href="#">ETC</a></li>
+                <li><a href="/study/spring">스프링</a></li>
+                <li><a href="/study/network">네트워크</a></li>
+                <li><a href="/study/etc">기타</a></li>
             </ul>
         </li>
         <li><a th:href="@{/login}">로그인</a></li>
